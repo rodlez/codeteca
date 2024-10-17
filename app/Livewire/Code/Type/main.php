@@ -19,7 +19,7 @@ class Main extends Component
     public $sortOrder = "desc";
     public $sortLink = '<i class="fa-solid fa-caret-down"></i>';
     public $search = "";
-    public $perPage = 25;
+    public $perPage = 2;
 
     public $selections = [];
 

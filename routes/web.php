@@ -24,6 +24,10 @@ Route::middleware('auth')->group(function () {
 
 // TYPE
 Route::get('/dashboard/type', [CodeTypeController::class, 'index'])->name('codetype.index')->middleware(['auth', 'verified']);
-
+Route::get('/dashboard/type/create', [CodeTypeController::class, 'create'])->name('codetype.create')->middleware(['auth', 'verified']);
+Route::get('/dashboard/type/{type}', [CodeTypeController::class, 'show'])->name('codetype.show')->middleware(['auth', 'verified']);
+Route::put('/dashboard/type/{type}', [CodeTypeController::class, 'update'])->name('codetype.update')->middleware(['auth', 'verified']);
+Route::delete('/dashboard/type/{type}', [CodeTypeController::class, 'destroy'])->name('codetype.destroy')->middleware(['auth', 'verified']);
+Route::get('/dashboard/type/edit/{type}', [CodeTypeController::class, 'edit'])->name('codetype.edit')->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
