@@ -22,6 +22,13 @@
                     </a>
                 </div>
 
+                <div class="p-6">
+                    <a href="{{ route('codecategory.index') }}">
+                            <span>Categories ()</span>
+                            <i class="fa-solid fa-list fa-2xl"></i>
+                    </a>
+                </div>
+
 
             </div>           
 

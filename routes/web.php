@@ -1,11 +1,11 @@
 <?php
 
 // Controllers
+use App\Http\Controllers\Code\CodeCategoryController;
 use App\Http\Controllers\Code\CodeTypeController;
 use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Route;
-
 
 
 Route::get('/', function () {
@@ -29,5 +29,13 @@ Route::get('/dashboard/type/{type}', [CodeTypeController::class, 'show'])->name(
 Route::put('/dashboard/type/{type}', [CodeTypeController::class, 'update'])->name('codetype.update')->middleware(['auth', 'verified']);
 Route::delete('/dashboard/type/{type}', [CodeTypeController::class, 'destroy'])->name('codetype.destroy')->middleware(['auth', 'verified']);
 Route::get('/dashboard/type/edit/{type}', [CodeTypeController::class, 'edit'])->name('codetype.edit')->middleware(['auth', 'verified']);
+
+// CATEGORY
+Route::get('/dashboard/category', [CodeCategoryController::class, 'index'])->name('codecategory.index')->middleware(['auth', 'verified']);
+Route::get('/dashboard/category/create', [CodeCategoryController::class, 'create'])->name('codecategory.create')->middleware(['auth', 'verified']);
+Route::get('/dashboard/category/{category}', [CodeCategoryController::class, 'show'])->name('codecategory.show')->middleware(['auth', 'verified']);
+Route::put('/dashboard/category/{category}', [CodeCategoryController::class, 'update'])->name('codecategory.update')->middleware(['auth', 'verified']);
+Route::delete('/dashboard/category/{category}', [CodeCategoryController::class, 'destroy'])->name('codecategory.destroy')->middleware(['auth', 'verified']);
+Route::get('/dashboard/category/edit/{category}', [CodeCategoryController::class, 'edit'])->name('codecategory.edit')->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';

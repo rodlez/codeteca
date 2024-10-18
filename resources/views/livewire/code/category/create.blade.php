@@ -1,0 +1,72 @@
+<div>
+
+    <!-- Header -->
+    <div class="flex flex-row justify-between items-center py-4 bg-black">
+        <div>
+            <span class="text-lg text-white px-4">New Category </span>
+        </div>
+        <div class="px-4">
+            <button wire:click.prevent="help">
+                <i class="fa-lg fa-solid fa-circle-question text-white hover:text-orange-600 transition duration-1000 ease-in-out" title="help"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Help -->
+    @if ($show % 2 != 0)
+        <div class="mx-auto w-11/12 pt-4 pb-0">
+            <div class="bg-gray-200 text-sm text-black font-bold p-2 mx-2 rounded-lg border-2 border-gray-400 relative">
+                Add more categories using the Add button</i>
+                <button wire:click.prevent="help"><i class="fa-solid fa-circle-xmark text-red-600 absolute -top-2 -right-3" title="Close"></i></button>
+            </div>
+        </div>
+    @endif
+
+    <!--category -->
+    <div class="mx-auto w-11/12 py-4 px-2">
+        <div>
+            <span class="font-semibold pl-2">Add</span>
+            @if ($inputs->count() < 5)
+                <button wire:click.prevent="add">
+                    <i class="fa-solid fa-circle-plus text-green-600 hover:text-green-400"></i>
+                </button>
+            @else
+                <span class="text-red-600 text-sm px-2">You have reached the limit (5)</span>
+            @endif
+        </div>
+        @php $count = 0 @endphp
+        @foreach ($inputs as $key => $value)
+            <div class="flex flex-row justify-start items-center gap-2 py-2">
+
+                <input wire:model="inputs.{{ $key }}.name" type="text" id="inputs.{{ $key }}.name" class="w-full sm:w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 placeholder:text-zinc-400 px-2" placeholder="Enter a name">
+                @if ($count > 0)
+                    <button wire:click="remove({{ $key }})">
+                        <i class="fa-solid fa-trash text-red-600 hover:text-black transition duration-1000 ease-in-out" title="Delete"></i>
+                    </button>
+                @else
+                    <span class="px-4"></span>
+                @endif
+            </div>
+            @error('inputs.' . $key . '.name')
+                <div>
+                    <span class="text-sm text-red-400 font-semibold px-2">{{ $message }}</span>
+                </div>
+            @enderror
+            @php $count++ @endphp
+        @endforeach
+        <div class="py-2">
+            <button wire:click.prevent="save" class="w-full sm:w-fit bg-black hover:bg-slate-700 text-white capitalize p-2 sm:px-4 rounded-lg shadow-none transition duration-500 ease-in-out {{ $inputs->count() > 5 ? 'cursor-not-allowed' : '' }}" {{ $inputs->count() > 5 ? 'disabled' : '' }}>
+                Save
+                <i class="fa-solid fa-floppy-disk px-2"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="flex flex-row justify-end items-center py-4 px-4 bg-black sm:rounded-b-lg">
+        <a href="{{ route('codecategory.index') }}">
+            <i class="fa-lg fa-solid fa-backward-step text-white hover:text-orange-600 transition duration-1000 ease-in-out" title="Go Back"></i>
+        </a>
+    </div>
+
+</div>
