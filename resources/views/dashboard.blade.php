@@ -29,6 +29,13 @@
                     </a>
                 </div>
 
+                <div class="p-6">
+                    <a href="{{ route('codetag.index') }}">
+                            <span>Tags ()</span>
+                            <i class="fa-solid fa-tags fa-2xl"></i>
+                    </a>
+                </div>
+
 
             </div>           
 

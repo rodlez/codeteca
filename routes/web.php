@@ -2,6 +2,7 @@
 
 // Controllers
 use App\Http\Controllers\Code\CodeCategoryController;
+use App\Http\Controllers\Code\CodeTagController;
 use App\Http\Controllers\Code\CodeTypeController;
 use App\Http\Controllers\ProfileController;
 
@@ -37,5 +38,13 @@ Route::get('/dashboard/category/{category}', [CodeCategoryController::class, 'sh
 Route::put('/dashboard/category/{category}', [CodeCategoryController::class, 'update'])->name('codecategory.update')->middleware(['auth', 'verified']);
 Route::delete('/dashboard/category/{category}', [CodeCategoryController::class, 'destroy'])->name('codecategory.destroy')->middleware(['auth', 'verified']);
 Route::get('/dashboard/category/edit/{category}', [CodeCategoryController::class, 'edit'])->name('codecategory.edit')->middleware(['auth', 'verified']);
+
+// TAGS
+Route::get('/dashboard/tag', [CodeTagController::class, 'index'])->name('codetag.index')->middleware(['auth', 'verified']);
+Route::get('/dashboard/tag/create', [CodeTagController::class, 'create'])->name('codetag.create')->middleware(['auth', 'verified']);
+Route::get('/dashboard/tag/{tag}', [CodeTagController::class, 'show'])->name('codetag.show')->middleware(['auth', 'verified']);
+Route::put('/dashboard/tag/{tag}', [CodeTagController::class, 'update'])->name('codetag.update')->middleware(['auth', 'verified']);
+Route::delete('/dashboard/tag/{tag}', [CodeTagController::class, 'destroy'])->name('codetag.destroy')->middleware(['auth', 'verified']);
+Route::get('/dashboard/tag/edit/{tag}', [CodeTagController::class, 'edit'])->name('codetag.edit')->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
