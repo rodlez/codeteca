@@ -27,7 +27,9 @@
         <div>
             <span class="font-semibold pl-2">Add</span>
             @if ($inputs->count() < 5)
-                <button wire:click.prevent="add"><i class="fa-solid fa-circle-plus text-green-600 hover:text-green-400" title="Add new Type"></i></button>
+                <button wire:click.prevent="add">
+                    <i class="fa-solid fa-circle-plus text-green-600 hover:text-green-400"></i>
+                </button>
             @else
                 <span class="text-red-600 text-sm px-2">You have reached the limit (5)</span>
             @endif
@@ -36,10 +38,10 @@
         @foreach ($inputs as $key => $value)
             <div class="flex flex-row justify-start items-center gap-2 py-2">
 
-                <input wire:model="inputs.{{ $key }}.name" type="text" id="inputs.{{ $key }}.name" class="w-full sm:w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 placeholder:text-zinc-400 px-2" placeholder="Enter a Name">
+                <input wire:model="inputs.{{ $key }}.name" type="text" id="inputs.{{ $key }}.name" class="w-full sm:w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 placeholder:text-zinc-400 px-2" placeholder="Enter a name">
                 @if ($count > 0)
                     <button wire:click="remove({{ $key }})">
-                        <i class="fa-solid fa-trash text-red-600 hover:text-red-400 px-2" title="Delete"></i>
+                        <i class="fa-solid fa-trash text-red-600 hover:text-black transition duration-1000 ease-in-out" title="Delete"></i>
                     </button>
                 @else
                     <span class="px-4"></span>

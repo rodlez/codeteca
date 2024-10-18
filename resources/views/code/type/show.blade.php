@@ -23,7 +23,7 @@
                     <input type="text" id="name" class="bg-zinc-200 border border-zinc-300 text-gray-900 text-md rounded-lg w-full sm:w-1/2 pl-2 p-2  dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500" value="{{ $type->name }}" disabled>
                     <!-- Edit -->
                     <a href="{{ route('codetype.edit', $type) }}">
-                        <i class="fa-solid fa-pencil text-green-600 hover:text-green-400 transition duration-1000 ease-in-out" title="Edit"></i>
+                        <i class="fa-solid fa-pen-to-square text-green-600 hover:text-black transition duration-1000 ease-in-out" title="Edit"></i>
                     </a>
                     <!-- Delete -->
                     <form action="{{ route('codetype.destroy', $type) }}" method="POST">
@@ -32,7 +32,7 @@
                         <!-- Dirtective to Override the http method -->
                         @method('DELETE')
                         <button onclick="return confirm('Are you sure you want to delete the type: {{ $type->name }}?')">
-                            <i class="text-red-600 hover:text-red-400 fa-solid fa-trash" title="Delete"></i>
+                            <i class="fa-solid fa-trash text-red-600 hover:text-black transition duration-1000 ease-in-out" title="Delete"></i>
                         </button>
                     </form>
                 </div>

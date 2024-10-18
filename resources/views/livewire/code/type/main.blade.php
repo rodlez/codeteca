@@ -68,18 +68,18 @@
                             <tr class="even:bg-zinc-200 odd:bg-gray-300 transition-all duration-1000 hover:bg-yellow-400">
                                 <td class="p-2 whitespace-nowrap text-md text-center leading-6 font-medium text-gray-900"><input wire:model.live="selections" type="checkbox" class="text-green-600 outline-none focus:ring-0 checked:bg-green-500" value={{ $type->id }}></td>
                                 <td class="p-2 whitespace-nowrap text-md leading-6 font-medium text-gray-900">{{ $type->id }}</td>
-                                <td class="p-2 whitespace-nowrap text-md leading-6 font-medium text-gray-900">{{ $type->name }}</td>
+                                <td class="p-2 whitespace-nowrap text-md leading-6 font-medium text-gray-900"><a href="{{ route('codetype.show', $type) }}">{{ $type->name }}</a></td>
                                 <td class="p-2 whitespace-nowrap text-md leading-6 font-medium text-gray-900">{{ date('d-m-Y', strtotime($type->created_at)) }}</td>
                                 <td class="p-2 whitespace-nowrap text-md leading-6 font-medium text-gray-900">{{ date('d-m-Y', strtotime($type->updated_at)) }}</td>
                                 <td class="p-2">
                                     <div class="flex justify-center items-center gap-2">
                                         <!-- Show -->
                                         <a href="{{ route('codetype.show', $type) }}" title="Show">
-                                            <span class="text-green-600 hover:text-black transition-all duration-500"><i class="fa-solid fa-circle-info"></i></span>
+                                            <i class="fa-solid fa-circle-info text-blue-600 hover:text-black transition duration-1000 ease-in-out"></i>
                                         </a>
                                         <!-- Edit -->
                                         <a href="{{ route('codetype.edit', $type) }}" title="Edit">
-                                            <span class="text-blue-600 hover:text-black transition-all duration-500"><i class="fa-solid fa-pen-to-square"></i></span>
+                                            <i class="fa-solid fa-pen-to-square text-green-600 hover:text-black transition duration-1000 ease-in-out"></i>
                                         </a>
                                         <!-- Delete -->
                                         <form action="{{ route('codetype.destroy', $type) }}" method="POST">
@@ -88,7 +88,7 @@
                                             <!-- Dirtective to Override the http method -->
                                             @method('DELETE')
                                             <button onclick="return confirm('Are you sure you want to delete the type: {{ $type->name }}?')" title="Delete">
-                                                <span class="text-red-600 hover:text-black transition-all duration-500"><i class="fa-solid fa-trash"></i></span>
+                                                <i class="fa-solid fa-trash text-red-600 hover:text-black transition duration-1000 ease-in-out"></i>
                                             </button>
                                         </form>
                                     </div>
