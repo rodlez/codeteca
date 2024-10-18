@@ -63,12 +63,12 @@ class Create extends Component
         }
 
         $message = "";
-        $this->inputs->count() === 1 ? $message = ' new Type created' : $message = ' new Types created';
+        $this->inputs->count() === 1 ? $message = 'Type ' . $input['name'] . ' created' : $message = $this->inputs->count() . ' new types created';
 
-        return to_route('codetype.index')->with('message', $this->inputs->count() . $message);
+        return to_route('codetype.index')->with('message', $message);
     }
 
-      
+
     public function render()
     {
         return view('livewire.code.type.create');

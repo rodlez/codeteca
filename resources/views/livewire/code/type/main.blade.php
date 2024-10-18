@@ -33,14 +33,14 @@
     </div>
     <!-- Bulk Actions -->
     @if (count($selections) > 0)
-        <div class="px-4">
-            <div class="flex flex-row justify-start items-end gap-4 py-2 px-4 mb-2 rounded-lg bg-zinc-200">
+        <div class="px-2 sm:px-4">
+            <div class="flex flex-row justify-start items-center gap-4 py-2 px-4 mb-2 rounded-lg bg-zinc-200">
                 <span class="text-sm font-semibold">Bulk Actions</span>
                 <a wire:click.prevent="bulkClear" class="cursor-pointer" title="Unselect All">
                     <span><i class="fa-solid fa-rotate-right text-green-600 hover:text-green-500"></i></span>
                 </a>
                 <a wire:click.prevent="bulkDelete" wire:confirm="Are you sure you want to delete this items?" class="cursor-pointer text-red-600 hover:text-red-500" title="Delete">
-                    <span><i class="fa-solid fa-trash"></i></span>
+                    <span><i class="fa-sm fa-solid fa-trash"></i></span>
                     <span>({{ count($selections) }})</span>
                 </a>
             </div>
@@ -72,7 +72,7 @@
                                 <td class="p-2 whitespace-nowrap text-md leading-6 font-medium text-gray-900">{{ date('d-m-Y', strtotime($type->created_at)) }}</td>
                                 <td class="p-2 whitespace-nowrap text-md leading-6 font-medium text-gray-900">{{ date('d-m-Y', strtotime($type->updated_at)) }}</td>
                                 <td class="p-2">
-                                    <div class="flex justify-center items-center gap-2">                                        
+                                    <div class="flex justify-center items-center gap-2">
                                         <!-- Show -->
                                         <a href="{{ route('codetype.show', $type) }}" title="Show">
                                             <span class="text-green-600 hover:text-black transition-all duration-500"><i class="fa-solid fa-circle-info"></i></span>
@@ -100,9 +100,9 @@
             @else
                 <div class="bg-zinc-200 text-red-600 rounded-lg p-4 mx-2 sm:mx-0">
                     <span>No types found</span>
-                        <a wire:click.prevent="clearSearch" title="Reset">
-                            <i class="fa-lg fa-solid fa-circle-xmark px-2"></i>
-                        </a>
+                    <a wire:click.prevent="clearSearch" title="Reset">
+                        <i class="fa-lg fa-solid fa-circle-xmark px-2"></i>
+                    </a>
                     </span>
                 </div>
             @endif
@@ -115,11 +115,10 @@
         {{ $types->links() }}
     </div>
     <!-- Footer -->
-    <div class="py-4 flex flex-row justify-end items-center px-4 bg-black sm:rounded-b-lg">
+    <div class="flex flex-row justify-end items-center py-4 px-4 bg-black sm:rounded-b-lg">
         <a href="{{ route('dashboard') }}">
-            <i class="fa-lg fa-solid fa-backward-step text-orange-600 hover:text-orange-400 transition duration-1000 ease-in-out" title="Go Back"></i>
+            <i class="fa-lg fa-solid fa-backward-step text-white hover:text-orange-600 transition duration-1000 ease-in-out" title="Go Back"></i>
         </a>
     </div>
 
 </div>
-

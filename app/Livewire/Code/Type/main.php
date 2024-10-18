@@ -11,7 +11,7 @@ use Livewire\WithPagination;
 
 class Main extends Component
 {
-    
+
     use WithPagination;
 
     //protected $paginationTheme = "bootstrap";
@@ -19,7 +19,7 @@ class Main extends Component
     public $sortOrder = "desc";
     public $sortLink = '<i class="fa-solid fa-caret-down"></i>';
     public $search = "";
-    public $perPage = 2;
+    public $perPage = 25;
 
     public $selections = [];
 

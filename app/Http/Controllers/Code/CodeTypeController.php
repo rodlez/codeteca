@@ -11,6 +11,7 @@ use App\Http\Requests\Code\StoreTypeRequest;
 use App\Models\CodeType;
 
 use Exception;
+use LogicException;
 
 class CodeTypeController extends Controller
 {
@@ -64,8 +65,12 @@ class CodeTypeController extends Controller
     public function update(StoreTypeRequest $request, CodeType $type)
     {
         $formData = $request->validated();
-        CodeType::where('id', $type->id)->update($formData);
-        return to_route('codetype.show', $type)->with('message', 'Type (' . $request->input('name') . ') successfully updated.');
+        try {
+            CodeType::where('id', $type->id)->update($formData);
+            return to_route('codetype.show', $type)->with('message', 'Type successfully updated');
+        } catch (Exception $e) {
+            return to_route('codetype.show', $type)->with('message', 'Error(' . $e->getCode() . ') Type can not be updated.');
+        }
     }
 
     /**
@@ -79,11 +84,9 @@ class CodeTypeController extends Controller
         }*/
         try {
             $type->delete();
-
-            return to_route('codetype.index')->with('message', 'type: ' . $type->name . ' deleted.');
+            return to_route('codetype.index')->with('message', 'Type (' . $type->name . ') deleted.');
         } catch (Exception $e) {
-
-            return to_route('codetype.index')->with('message', 'Error(' . $e->getCode() . ') Type: ' . $type->name . ' can not be deleted.');
+            return to_route('codetype.index')->with('message', 'Error (' . $e->getCode() . ') Type: ' . $type->name . ' can not be deleted.');
         }
     }
 }

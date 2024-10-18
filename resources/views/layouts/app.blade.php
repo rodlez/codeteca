@@ -32,11 +32,10 @@
         <!-- Page Content -->
         <main>
             <!-- Session to pass the message for the CRUD operations success or error -->
-            <div class="container max-w-6xl mx-auto px-6 pt-4">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 @if (session()->has('message'))
-                    <div
-                        class="flex flex-row justify-between item-center <?php echo substr(session('message'), 0, 5) == 'Error' ? 'bg-red-600' : 'bg-green-700'; ?>  text-white p-2 rounded-md">
-                        <h2 class="text-md italic px-2">{{ session('message') }}</h2>
+                    <div class="flex flex-row justify-between items-center <?php echo substr(session('message'), 0, 5) == 'Error' ? 'bg-red-600' : 'bg-green-600'; ?>  text-white mt-4 p-2 sm:rounded-lg">
+                        <h2 class="text-sm font-bold px-2">{{ session('message') }}</h2>
                         <a href="{{ URL::current() }}" class="px-2">X</a>
                     </div>
                 @endif
