@@ -14,4 +14,17 @@ class CodeTag extends Model
     protected $fillable = [
      'name'
  ];
+
+ /**
+     * Get the sport entries associated with the category.
+     */
+    public function codes()
+    {
+        return $this->belongsToMany(
+            CodeEntry::class,
+            table: 'code_entry_tag',
+            relatedPivotKey: 'code_entry_id'
+        )->withTimestamps();
+    }
+
 }

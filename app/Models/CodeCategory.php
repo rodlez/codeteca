@@ -13,4 +13,16 @@ class CodeCategory extends Model
    protected $fillable = [
     'name'
 ];
+
+/**
+     * Get the entries associated with the category.
+     */
+    public function codes()
+    {
+        return $this->hasMany(
+            CodeEntry::class,
+            foreignKey: 'category_id'
+        );
+    }
+
 }

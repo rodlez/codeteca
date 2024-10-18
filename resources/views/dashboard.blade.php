@@ -16,6 +16,13 @@
                 </div>
 
                 <div class="p-6">
+                    <a href="{{ route('codeentry.index') }}">
+                            <span>Entries ()</span>
+                            <i class="fa-solid fa-code fa-2xl"></i>
+                    </a>
+                </div>
+
+                <div class="p-6">
                     <a href="{{ route('codetype.index') }}">
                             <span>Types ()</span>
                             <i class="fa-solid fa-sitemap fa-2xl"></i>

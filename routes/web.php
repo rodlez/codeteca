@@ -2,6 +2,7 @@
 
 // Controllers
 use App\Http\Controllers\Code\CodeCategoryController;
+use App\Http\Controllers\Code\CodeEntryController;
 use App\Http\Controllers\Code\CodeTagController;
 use App\Http\Controllers\Code\CodeTypeController;
 use App\Http\Controllers\ProfileController;
@@ -22,6 +23,14 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// ENTRIES
+Route::get('/dashboard/entry', [CodeEntryController::class, 'index'])->name('codeentry.index')->middleware(['auth', 'verified']);
+Route::get('/dashboard/entry/create', [CodeEntryController::class, 'create'])->name('codeentry.create')->middleware(['auth', 'verified']);
+Route::get('/dashboard/entry/{entry}', [CodeEntryController::class, 'show'])->name('codeentry.show')->middleware(['auth', 'verified']);
+Route::put('/dashboard/entry/{entry}', [CodeEntryController::class, 'update'])->name('codeentry.update')->middleware(['auth', 'verified']);
+Route::delete('/dashboard/entry/{entry}', [CodeEntryController::class, 'destroy'])->name('codeentry.destroy')->middleware(['auth', 'verified']);
+Route::get('/dashboard/entry/edit/{entry}', [CodeEntryController::class, 'edit'])->name('codeentry.edit')->middleware(['auth', 'verified']);
 
 // TYPE
 Route::get('/dashboard/type', [CodeTypeController::class, 'index'])->name('codetype.index')->middleware(['auth', 'verified']);

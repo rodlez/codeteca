@@ -45,4 +45,15 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the sports entries associated with the user.
+     */
+    public function codes()
+    {
+        return $this->hasMany(
+            CodeEntry::class,
+            foreignKey: 'user_id'
+        );
+    }
 }

@@ -15,4 +15,15 @@ class CodeType extends Model
     'name'
 ];
 
+/**
+     * Get the entries associated with the type.
+     */
+    public function codes()
+    {
+        return $this->hasMany(
+            CodeEntry::class,
+            foreignKey: 'type_id'
+        );
+    }
+
 }
