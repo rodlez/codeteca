@@ -81,7 +81,7 @@
                         <i class="fa-solid fa-sitemap"></i>
                     </span>
                     <span
-                        class="inline-flex items-center rounded-md bg-red-50 p-2 text-sm font-medium text-red-700 ring-1 ring-inset ring-red-600/10">{{ $entry->type->name }}</span>
+                        class="inline-flex items-center rounded-md bg-yellow-400 p-2 text-sm font-medium text-black ring-1 ring-inset ring-yellow-600/10">{{ $entry->type->name }}</span>
                 </div>
             </div>
             <!-- Category -->
@@ -94,7 +94,7 @@
                         <i class="fa-solid fa-list"></i>
                     </span>
                     <span
-                        class="inline-flex items-center rounded-md bg-green-50 p-2 text-sm font-medium text-green-700 ring-1 ring-inset ring-green-600/20">{{ $entry->category->name }}</span>
+                        class="inline-flex items-center rounded-md bg-blue-400 p-2 text-sm font-medium text-black ring-1 ring-inset ring-blue-600/20">{{ $entry->category->name }}</span>
                 </div>
             </div>
             <!-- Tags -->
@@ -109,7 +109,7 @@
                     <div>
                         @foreach ($tags as $tag)
                             <span
-                                class="inline-flex items-center rounded-md bg-yellow-50 m-1 p-2 text-sm font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">{{ $tag }}</span>
+                                class="inline-flex items-center rounded-md bg-orange-400 p-2 text-sm font-medium text-black ring-1 ring-inset ring-orange-600/20">{{ $tag }}</span>
                         @endforeach
                     </div>
 

@@ -1,12 +1,12 @@
 <div>
 
     <!-- Header -->
-    <div class="flex flex-row justify-between items-center py-4 bg-black">
+    <div class="flex flex-row justify-between items-center py-4 bg-orange-400">
         <div>
             <span class="text-lg text-white px-4">Tags <span class="text-sm">({{ $search != '' ? $found : $total }})</span></span>
         </div>
         <div class="px-4">
-            <a href="{{ route('codetag.create') }}" class="text-white text-sm sm:text-md rounded-lg py-2 px-4 bg-orange-600 hover:bg-orange-400 transition duration-1000 ease-in-out" title="Create New Tag">New</a>
+            <a href="{{ route('codetag.create') }}" class="text-white text-sm sm:text-md rounded-lg py-2 px-4 bg-black hover:bg-gray-600 transition duration-1000 ease-in-out" title="Create New Tag">New</a>
         </div>
     </div>
     <!-- Search -->
@@ -53,12 +53,12 @@
             @if ($tags->count())
                 <table class="min-w-full ">
                     <thead>
-                        <tr class="bg-black text-white text-left text-sm font-normal uppercase">
+                        <tr class="text-black text-left text-sm font-normal uppercase">
                             <th></th>
-                            <th wire:click="sorting('id')" scope="col" class="p-2 hover:cursor-pointer hover:text-yellow-400 {{ $column == 'id' ? 'text-yellow-400' : '' }}">id {!! $sortLink !!}</th>
-                            <th wire:click="sorting('name')" scope="col" class="p-2 hover:cursor-pointer hover:text-yellow-400 {{ $column == 'name' ? 'text-yellow-400' : '' }}">name {!! $sortLink !!}</th>
-                            <th wire:click="sorting('created_at')" scope="col" class="p-2 hover:cursor-pointer hover:text-yellow-400 {{ $column == 'created_at' ? 'text-yellow-400' : '' }}">created {!! $sortLink !!}</th>
-                            <th wire:click="sorting('updated_at')" scope="col" class="p-2 hover:cursor-pointer hover:text-yellow-400 {{ $column == 'updated_at' ? 'text-yellow-400' : '' }}">updated {!! $sortLink !!}</th>
+                            <th wire:click="sorting('id')" scope="col" class="p-2 hover:cursor-pointer hover:text-orange-600 {{ $column == 'id' ? 'text-orange-600' : '' }}">id {!! $sortLink !!}</th>
+                            <th wire:click="sorting('name')" scope="col" class="p-2 hover:cursor-pointer hover:text-orange-600 {{ $column == 'name' ? 'text-orange-600' : '' }}">name {!! $sortLink !!}</th>
+                            <th wire:click="sorting('created_at')" scope="col" class="p-2 hover:cursor-pointer hover:text-orange-600 {{ $column == 'created_at' ? 'text-orange-600' : '' }}">created {!! $sortLink !!}</th>
+                            <th wire:click="sorting('updated_at')" scope="col" class="p-2 hover:cursor-pointer hover:text-orange-600 {{ $column == 'updated_at' ? 'text-orange-600' : '' }}">updated {!! $sortLink !!}</th>
                             <th scope="col" class="p-2 text-center"> actions </th>
                         </tr>
                     </thead>
@@ -115,9 +115,9 @@
         {{ $tags->links() }}
     </div>
     <!-- Footer -->
-    <div class="flex flex-row justify-end items-center py-4 px-4 bg-black sm:rounded-b-lg">
+    <div class="flex flex-row justify-end items-center py-4 px-4 bg-orange-400 sm:rounded-b-lg">
         <a href="{{ route('dashboard') }}">
-            <i class="fa-lg fa-solid fa-backward-step text-white hover:text-orange-600 transition duration-1000 ease-in-out" title="Go Back"></i>
+            <i class="fa-lg fa-solid fa-backward-step text-white hover:text-black transition duration-1000 ease-in-out" title="Go Back"></i>
         </a>
     </div>
 

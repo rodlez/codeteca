@@ -3,14 +3,14 @@
     <div class="max-w-7xl mx-auto sm:pb-8 sm:px-6 lg:px-8">
         <!-- Sitemap -->
         <div class="flex flex-row justify-start items-start gap-1 text-sm py-3 px-4 text-slate-500">
-            <a href="/dashboard/type" class="hover:text-orange-600">Types</a> /
-            <a href="/dashboard/type/{{ $type->id }}" class="hover:text-orange-600">Info</a> /
-            <a href="/dashboard/type/edit/{{ $type->id }}" class="font-bold text-black border-b-2 border-b-orange-500">Edit</a>
+            <a href="/dashboard/type" class="hover:text-yellow-600">Types</a> /
+            <a href="/dashboard/type/{{ $type->id }}" class="hover:text-yellow-600">Info</a> /
+            <a href="/dashboard/type/edit/{{ $type->id }}" class="font-bold text-black border-b-2 border-b-yellow-500">Edit</a>
         </div>
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <!-- Header -->
-            <div class="flex flex-row justify-between items-center py-4 bg-black">
+            <div class="flex flex-row justify-between items-center py-4 bg-yellow-400">
                 <div>
                     <span class="text-lg text-white px-4">Type Edit</span>
                 </div>
@@ -25,7 +25,7 @@
 
                     <div class="flex flex-col justify-start items-start w-full sm:w-2/3 gap-4 py-2">
                         <span class="text-md font-semibold px-2">Name</span>
-                        <input name="name" id="name" type="text" value="{{ $type->name }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg w-full sm:w-2/3 p-2 focus:ring-orange-500 focus:border-orange-500">
+                        <input name="name" id="name" type="text" value="{{ $type->name }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg w-full sm:w-2/3 p-2 focus:ring-yellow-500 focus:border-yellow-500">
                     </div>
                     <!-- Errors -->
                     @error('name')
@@ -44,9 +44,9 @@
             </div>
         </div>
         <!-- Footer -->
-        <div class="flex flex-row justify-end items-center py-4 px-4 bg-black sm:rounded-b-lg">
+        <div class="flex flex-row justify-end items-center py-4 px-4 bg-yellow-400 sm:rounded-b-lg">
             <a href="{{ route('codetype.show', $type) }}">
-                <i class="fa-lg fa-solid fa-backward-step text-white hover:text-orange-600 transition duration-1000 ease-in-out" title="Go Back"></i>
+                <i class="fa-lg fa-solid fa-backward-step text-white hover:text-black transition duration-1000 ease-in-out" title="Go Back"></i>
             </a>
         </div>
     </div>

@@ -3,14 +3,14 @@
     <div class="max-w-7xl mx-auto sm:pb-8 sm:px-6 lg:px-8">
         <!-- Sitemap -->
         <div class="flex flex-row justify-start items-start gap-1 text-sm py-3 px-4 text-slate-500">
-            <a href="/dashboard/category" class="hover:text-orange-600">Categories</a> /
-            <a href="/dashboard/category/{{ $category->id }}" class="font-bold text-black border-b-2 border-b-orange-600">Info</a>
+            <a href="/dashboard/category" class="hover:text-blue-600">Categories</a> /
+            <a href="/dashboard/category/{{ $category->id }}" class="font-bold text-black border-b-2 border-b-blue-600">Info</a>
         </div>
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
             <!-- Header -->
-            <div class="flex flex-row justify-between items-center py-4 bg-black">
+            <div class="flex flex-row justify-between items-center py-4 bg-blue-400">
                 <div>
                     <span class="text-lg text-white px-4">Category Info</span>
                 </div>
@@ -39,9 +39,9 @@
             </div>
 
             <!-- Footer -->
-            <div class="flex flex-row justify-end items-center py-4 px-4 bg-black sm:rounded-b-lg">
+            <div class="flex flex-row justify-end items-center py-4 px-4 bg-blue-400 sm:rounded-b-lg">
                 <a href="{{ route('codecategory.index') }}">
-                    <i class="fa-lg fa-solid fa-backward-step text-white hover:text-orange-600 transition duration-1000 ease-in-out" title="Go Back"></i>
+                    <i class="fa-lg fa-solid fa-backward-step text-white hover:text-black transition duration-1000 ease-in-out" title="Go Back"></i>
                 </a>
             </div>
 

@@ -1,10 +1,9 @@
-<div class="bg-white shadow rounded-xl mx-4">
+<div>
 
     <!-- Header -->
-    <div class="flex flex-row justify-between py-4 bg-green-600 rounded-t-lg">
-        <div class="flex items-baseline">
-            <i class="fa-lg sm:fa-2x fa-solid fa-laptop-code pl-8 text-white"></i>
-            <span class="text-lg text-white px-2">Entries <span class="text-md">({{ $search != '' ? $found : $total }})</span></span>
+    <div class="flex flex-row justify-between items-center py-4 bg-green-400">
+        <div>
+            <span class="text-lg text-white px-4">Entries <span class="text-md">({{ $search != '' ? $found : $total }})</span></span>
         </div>
         <div class="px-4">
             <a href="{{ route('codeentry.create') }}" class="text-white text-sm sm:text-md rounded-lg py-2 px-4 bg-black hover:bg-slate-600 transition duration-1000 ease-in-out" title="Create New Entry">New</a>
@@ -12,9 +11,9 @@
     </div>
 
     <!-- Filters -->
-    <div class="flex flex-row justify-between items-center py-2 mx-4 mt-2 border-green-600 border-b-2 w-100 sm:w-100">
+    <div class="flex flex-row justify-between items-center py-2 mx-4 mt-2 border-green-400 border-b-2 w-100 sm:w-100">
         <div>
-            <i class="fa-lg fa-solid fa-filter text-green-600 pl-4"></i>
+            <i class="fa-lg fa-solid fa-filter text-green-400 pl-4"></i>
             <span class="px-2 text-lg text-zinc-800">Filters
                 <span class="text-xs md:text-md font-semibold">
                     <span class="text-yellow-600">{{ $tipo > 0 ? '(Type)' : '' }}</span>
@@ -125,9 +124,9 @@
         <!-- Search -->
         <div class="relative w-full">
             <div class="absolute top-2.5 bottom-0 left-4 text-slate-700">
-                <i class="fa-lg fa-solid fa-magnifying-glass text-green-600"></i>
+                <i class="fa-lg fa-solid fa-magnifying-glass"></i>
             </div>
-            <input type="search" class="w-full rounded-lg pl-12 placeholder-zinc-400 focus:outline-none focus:ring-0 focus:border-green-600 border-2 border-zinc-200 placeholder:text-sm" placeholder="Search by title" wire:model.live="search">
+            <input type="search" class="w-full rounded-lg pl-12 placeholder-zinc-400 focus:outline-none focus:ring-0 focus:border-green-400 border-2 border-zinc-200 placeholder:text-sm" placeholder="Search by title" wire:model.live="search">
         </div>
         <!-- Pagination -->
         <div class="relative w-32">
@@ -149,7 +148,7 @@
             <div>
                 <p class="text-sm font-semibold">
                     <span class="text-lg text-black">Criteria > </span>
-                    <span class="text-green-600">{{ $search != '' ? 'Search' : '' }}</span>
+                    <span class="text-orange-400">{{ $search != '' ? 'Search' : '' }}</span>
                     <span class="text-yellow-600">{{ $tipo > 0 ? 'Type (' . $tipo . ')' : '' }}</span>
                     <span class="text-blue-600">{{ $cat > 0 ? 'Category (' . $cat . ')' : '' }}</span>
                     <span class="text-orange-600">{{ !in_array('0', $this->selectedTags) && count($this->selectedTags) != 0 ? 'Tags (' . implode(', ', $tagNames) . ')' : '' }}</span>
@@ -171,7 +170,7 @@
         <div class="flex flex-row justify-start items-end sm:flex-row sm:justify-start gap-6 py-0 px-6">
             <span class="text-sm font-semibold">Entries Selected</span>
             <a wire:click.prevent="bulkClear" class="cursor-pointer" title="Unselect All">
-                <span><i class="fa-solid fa-arrow-rotate-left text-green-600"></i></span>
+                <span><i class="fa-solid fa-arrow-rotate-left text-green-400"></i></span>
             </a>
             <a wire:click.prevent="bulkDelete" wire:confirm="Are you sure you want to delete this entries?" class="cursor-pointer text-red-600" title="Delete">
                 <span><i class="fa-solid fa-trash"></i></span>
@@ -186,16 +185,16 @@
         <div class="overflow-x-auto">
 
             @if ($entries->count())
-                <table class="table-fixed min-w-full border-r border-l">
+                <table class="table-fixed min-w-full">
                     <thead class="h-12">
-                        <tr class="bg-black text-white text-center text-sm uppercase">
-                            {{-- <th class="p-2"><input wire:model.live="selectAll" type="checkbox" class="text-green-600 outline-none focus:ring-0 checked:bg-green-500"></th> --}}
+                        <tr class="text-black text-left text-sm uppercase">
+                            {{-- <th class="p-2"><input wire:model.live="selectAll" type="checkbox" class="text-orange-400 outline-none focus:ring-0 checked:bg-green-500"></th> --}}
                             <th class="rounded-tl-lg"></th>
-                            <th wire:click="sorting('id')" scope="col" class="p-2 hover:cursor-pointer {{ $column == 'id' ? 'bg-yellow-400 text-black' : '' }}">id {!! $sortLink !!}</th>
-                            <th wire:click="sorting('title')" scope="col" class="p-2 hover:cursor-pointer {{ $column == 'title' ? 'bg-yellow-400 text-black' : '' }}">title {!! $sortLink !!}</th>
-                            <th wire:click="sorting('type_name')" scope="col" class="p-2 hover:cursor-pointer {{ $column == 'type_name' ? 'bg-yellow-400 text-black' : '' }}">type <span class="text-xs">{{ '(' . $differentTypes . ')' }}</span> {!! $sortLink !!}</th>
-                            <th wire:click="sorting('category_name')" scope="col" class="p-2 hover:cursor-pointer {{ $column == 'category_name' ? 'bg-yellow-400 text-black' : '' }}">category <span class="text-xs">{{ '(' . $differentCategories . ')' }}</span> {!! $sortLink !!}</th>
-                            <th wire:click="sorting('created')" scope="col" class="p-2 hover:cursor-pointer {{ $column == 'created' ? 'bg-yellow-400 text-black' : '' }}">created {!! $sortLink !!}</th>
+                            <th wire:click="sorting('id')" scope="col" class="p-2 hover:cursor-pointer hover:text-green-600 {{ $column == 'id' ? 'text-green-600' : '' }}">id {!! $sortLink !!}</th>
+                            <th wire:click="sorting('title')" scope="col" class="p-2 hover:cursor-pointer  hover:text-green-600 {{ $column == 'title' ? 'text-green-600' : '' }}">title {!! $sortLink !!}</th>
+                            <th wire:click="sorting('type_name')" scope="col" class="p-2 hover:cursor-pointer  hover:text-green-600 {{ $column == 'type_name' ? 'text-green-600' : '' }}">type <span class="text-xs">{{ '(' . $differentTypes . ')' }}</span> {!! $sortLink !!}</th>
+                            <th wire:click="sorting('category_name')" scope="col" class="p-2 hover:cursor-pointer  hover:text-green-600 {{ $column == 'category_name' ? 'text-green-600' : '' }}">category <span class="text-xs">{{ '(' . $differentCategories . ')' }}</span> {!! $sortLink !!}</th>
+                            <th wire:click="sorting('created')" scope="col" class="p-2 hover:cursor-pointer  hover:text-green-600 {{ $column == 'created' ? 'text-green-600' : '' }}">created {!! $sortLink !!}</th>
                             <th scope="col" class="p-2">Tags</th>
                             <th scope="col" class="p-2 text-center">Files</th>
                             <th scope="col" class="p-2 text-center rounded-tr-lg">actions</th>
@@ -204,19 +203,19 @@
                     <tbody>
 
                         @foreach ($entries as $entry)
-                            <tr class="text-center text-md text-zinc-600 p-2 even:bg-zinc-200 odd:bg-white transition-all duration-1000 hover:bg-yellow-200">
-                                <td class="px-2"><input wire:model.live="selections" type="checkbox" class="text-green-600 outline-none focus:ring-0 checked:bg-green-500" value={{ $entry->id }}></td>
-                                <td>{{ $entry->id }}</td>
-                                <td class="cursor-pointer" title="{{ $entry->title }}">
+                        <tr class="even:bg-zinc-200 odd:bg-gray-300 transition-all duration-1000 hover:bg-yellow-400">
+                            <td class="px-2"><input wire:model.live="selections" type="checkbox" class="text-green-400 outline-none focus:ring-0 checked:bg-green-500" value={{ $entry->id }}></td>
+                                <td class="px-2">{{ $entry->id }}</td>
+                                <td class="px-2 cursor-pointer" title="{{ $entry->title }}">
                                     <a href="{{ route('codeentry.show', $entry) }}" data-tooltip="See this entry">
                                         {{-- {{ excerpt($entry->title, 20) }} --}}
                                         {{ $entry->title }}
                                     </a>
                                 </td>
-                                <td>{{ $entry->type_name }}</td>
-                                <td>{{ $entry->category_name }}</td>
-                                <td>{{ date('d-m-Y', strtotime($entry->created)) }}</td>
-                                <td>
+                                <td class="px-2">{{ $entry->type_name }}</td>
+                                <td class="px-2">{{ $entry->category_name }}</td>
+                                <td class="px-2">{{ date('d-m-Y', strtotime($entry->created)) }}</td>
+                                <td class="px-2">
                                     @foreach ($entry->tags as $tag)
                                         {{ $tag->name }} <br>
                                     @endforeach
@@ -286,14 +285,14 @@
                                     <div class="flex justify-center items-center gap-2">
                                         <!-- Show -->
                                         <a href="{{ route('codeentry.show', $entry) }}" >
-                                            <span class="text-orange-400 hover:text-black transition-all duration-500 tooltip">
+                                            <span class="text-blue-400 hover:text-black transition-all duration-500 tooltip">
                                                 <i class="fa-solid fa-circle-info"></i>
                                                 <span class="tooltiptext">See this Entry</span>
                                             </span>
                                         </a>
                                         <!-- Upload File -->
                                         <a href="{{ route('codefile.index', $entry) }}" data-tooltip="Upload File" data-tooltip-position="top">
-                                            <span class="text-green-600 hover:text-black transition-all duration-500"><i class="fa-solid fa-file-arrow-up"></i></span>
+                                            <span class="text-violet-400 hover:text-black transition-all duration-500"><i class="fa-solid fa-file-arrow-up"></i></span>
                                         </a>
                                         <!-- Edit -->
                                         <a href="{{ route('codeentry.edit', $entry) }}" title="Edit this entry">
@@ -314,11 +313,7 @@
                             </tr>
                         @endforeach
                     </tbody>
-                    <tfoot class="h-6">
-                        <tr class="bg-black ">
-                            <td class="rounded-b-lg" colspan="9"></td>
-                        </tr>
-                    </tfoot>
+                    
                 </table>
             @else
                 <div class="bg-zinc-100 py-6 rounded-lg border-2 border-red-600">
@@ -338,9 +333,8 @@
     <div class="py-2 px-4">
         {{ $entries->links() }}
     </div>
-
     <!-- Footer -->
-    <div class="py-4 flex flex-row justify-end items-center px-4 bg-green-600 rounded-b-lg">
+    <div class="flex flex-row justify-end items-center py-4 px-4 bg-green-400 sm:rounded-b-lg">
         <a href="{{ route('dashboard') }}">
             <i class="fa-lg fa-solid fa-backward-step text-white hover:text-black transition duration-1000 ease-in-out" title="Go Back"></i>
         </a>

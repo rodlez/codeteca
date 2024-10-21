@@ -10,7 +10,7 @@
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
             <!-- Header -->
-            <div class="flex flex-row justify-between items-center py-4 bg-black">
+            <div class="flex flex-row justify-between items-center py-4 bg-orange-400">
                 <div>
                     <span class="text-lg text-white px-4">Tag Info</span>
                 </div>
@@ -39,9 +39,9 @@
             </div>
 
             <!-- Footer -->
-            <div class="flex flex-row justify-end items-center py-4 px-4 bg-black sm:rounded-b-lg">
+            <div class="flex flex-row justify-end items-center py-4 px-4 bg-orange-400 sm:rounded-b-lg">
                 <a href="{{ route('codetag.index') }}">
-                    <i class="fa-lg fa-solid fa-backward-step text-white hover:text-orange-600 transition duration-1000 ease-in-out" title="Go Back"></i>
+                    <i class="fa-lg fa-solid fa-backward-step text-white hover:text-black transition duration-1000 ease-in-out" title="Go Back"></i>
                 </a>
             </div>
 
