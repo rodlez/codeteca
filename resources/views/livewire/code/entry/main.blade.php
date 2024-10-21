@@ -222,7 +222,7 @@
                                     @endforeach
                                 </td>
                                 <td class="text-sm text-black py-2">
-                                    {{-- <div class="flex flex-col justify-between items-center gap-2">
+                                    <div class="flex flex-col justify-between items-center gap-2">
                                         @foreach ($entry->files as $file)
                                             @switch($file->media_type)
                                                 @case('application/vnd.ms-excel')
@@ -280,7 +280,7 @@
                                             @endswitch
                                             
                                         @endforeach
-                                    </div> --}}
+                                    </div>
                                 </td>
                                 <td class="p-2">
                                     <div class="flex justify-center items-center gap-2">
@@ -292,9 +292,9 @@
                                             </span>
                                         </a>
                                         <!-- Upload File -->
-                                        {{-- <a href="{{ route('codefile.index', $entry) }}" data-tooltip="Upload File" data-tooltip-position="top">
+                                        <a href="{{ route('codefile.index', $entry) }}" data-tooltip="Upload File" data-tooltip-position="top">
                                             <span class="text-green-600 hover:text-black transition-all duration-500"><i class="fa-solid fa-file-arrow-up"></i></span>
-                                        </a> --}}
+                                        </a>
                                         <!-- Edit -->
                                         <a href="{{ route('codeentry.edit', $entry) }}" title="Edit this entry">
                                             <span class="text-blue-600 hover:text-black transition-all duration-500"><i class="fa-solid fa-pen-to-square"></i></span>

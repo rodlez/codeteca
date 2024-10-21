@@ -112,10 +112,10 @@ class CodeService
         return $tags;
     }
 
- /*    public function getFiles(CodeEntry $entry): Collection
+    public function getFiles(CodeEntry $entry): Collection
     {
         return CodeFile::where('code_id', $entry->id)->get();
-    } */
+    }
 
     /**
      * Get the tag names given an array with the tag ids

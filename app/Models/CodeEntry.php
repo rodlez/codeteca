@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
 
-use App\Models\CodeType;
+/* use App\Models\CodeType;
 use App\Models\CodeCategory;
 use App\Models\CodeTag;
+use App\Models\CodeFile; */
 
 class CodeEntry extends Model
 {
@@ -69,5 +70,16 @@ class CodeEntry extends Model
             table: 'code_entry_tag',
             foreignPivotKey: 'code_entry_id'
         )->withTimestamps();
+    }
+
+    /**
+     * Get the Files associated.
+     */
+    public function files()
+    {
+        return $this->hasMany(
+            CodeFile::class,
+            foreignKey: 'code_id'
+        );
     }
 }

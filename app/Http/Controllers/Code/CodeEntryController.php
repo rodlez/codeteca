@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Code;
 
 use App\Http\Controllers\Controller;
 use App\Models\CodeEntry;
+
 use App\Services\CodeService;
+use App\Services\CodeFileService;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -12,9 +14,28 @@ use Illuminate\View\View;
 class CodeEntryController extends Controller
 {
     // Service Injection
-    public function __construct(private CodeService $codeService)
+    public function __construct(
+        private CodeService $codeService,
+        private CodeFileService $codeFileService,
+    ) {}
+
+    /**
+     * Display the main page in the dashboard
+     */
+    
+    public function main(): View
     {
-        //private SportImageService $sportImageService,
+        $entries    = $this->codeService->totalEntries();
+        $types      = $this->codeService->totalTypes();
+        $categories = $this->codeService->totalCategories();
+        $tags       = $this->codeService->totalTags();
+
+        return view('code/main', [
+            'totalEntries' => $entries,
+            'totalTypes' => $types,
+            'totalCategories' => $categories,
+            'totalTags' => $tags,
+        ]);
     }
 
     /**
@@ -47,12 +68,12 @@ class CodeEntryController extends Controller
     public function show(CodeEntry $entry): View
     {
         $tags = $this->codeService->displayEntryTags($entry);
-        /* $files = $this->codeService->getFiles($entry); */
+        $files = $this->codeService->getFiles($entry);
 
         return view('code/entry/show', [
             'entry' => $entry,
             'tags' => $tags,
-            //'files' => $files,
+            'files' => $files,
         ]);
     }
 
@@ -81,10 +102,12 @@ class CodeEntryController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(CodeEntry $entry)
-    {
-        //$images = $this->sportService->getImages($entry);
-        //dd($images->count());
-        //$this->sportImageService->deleteImages($images);
+    {      
+
+        $files = $this->codeService->getFiles($entry);
+        if ($files->count() > 0) {
+            $this->codeFileService->deleteFiles($files);
+        }        
 
         $entry->delete();
         return to_route('codeentry.index')->with('message', 'Entry: ' . $entry->title . ' deleted.');

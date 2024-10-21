@@ -1,10 +1,11 @@
 <?php
 
 // Controllers
-use App\Http\Controllers\Code\CodeCategoryController;
 use App\Http\Controllers\Code\CodeEntryController;
-use App\Http\Controllers\Code\CodeTagController;
+use App\Http\Controllers\Code\CodeFileController;
 use App\Http\Controllers\Code\CodeTypeController;
+use App\Http\Controllers\Code\CodeCategoryController;
+use App\Http\Controllers\Code\CodeTagController;
 use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// MAIN
+
+Route::get('/dashboard/main', [CodeEntryController::class, 'main'])->name('code.main')->middleware(['auth', 'verified']);
+
 // ENTRIES
 Route::get('/dashboard/entry', [CodeEntryController::class, 'index'])->name('codeentry.index')->middleware(['auth', 'verified']);
 Route::get('/dashboard/entry/create', [CodeEntryController::class, 'create'])->name('codeentry.create')->middleware(['auth', 'verified']);
@@ -31,6 +36,11 @@ Route::get('/dashboard/entry/{entry}', [CodeEntryController::class, 'show'])->na
 Route::put('/dashboard/entry/{entry}', [CodeEntryController::class, 'update'])->name('codeentry.update')->middleware(['auth', 'verified']);
 Route::delete('/dashboard/entry/{entry}', [CodeEntryController::class, 'destroy'])->name('codeentry.destroy')->middleware(['auth', 'verified']);
 Route::get('/dashboard/entry/edit/{entry}', [CodeEntryController::class, 'edit'])->name('codeentry.edit')->middleware(['auth', 'verified']);
+
+// FILES
+Route::get('/dashboard/entry/{entry}/file', [CodeFileController::class, 'index'])->name('codefile.index')->middleware(['auth', 'verified']);
+Route::get('/dashboard/entry/{entry}/file/{file}', [CodeFileController::class, 'download'])->name('codefile.download')->middleware(['auth', 'verified']);
+Route::delete('/dashboard/entry/{entry}/file/{file}', [CodeFileController::class, 'destroy'])->name('codefile.destroy')->middleware(['auth', 'verified']);
 
 // TYPE
 Route::get('/dashboard/type', [CodeTypeController::class, 'index'])->name('codetype.index')->middleware(['auth', 'verified']);

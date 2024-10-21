@@ -16,32 +16,38 @@
                 </div>
 
                 <div class="p-6">
+                    <a href="{{ route('code.main') }}">
+                        Main
+                    </a>
+                </div>
+
+                {{-- <div class="p-6">
                     <a href="{{ route('codeentry.index') }}">
-                            <span>Entries ()</span>
+                            <span>Entries ({{ $totalEntries }})</span>
                             <i class="fa-solid fa-code fa-2xl"></i>
                     </a>
                 </div>
 
                 <div class="p-6">
                     <a href="{{ route('codetype.index') }}">
-                            <span>Types ()</span>
+                            <span>Types ({{ $totalTypes }})</span>
                             <i class="fa-solid fa-sitemap fa-2xl"></i>
                     </a>
                 </div>
 
                 <div class="p-6">
                     <a href="{{ route('codecategory.index') }}">
-                            <span>Categories ()</span>
+                            <span>Categories ({{ $totalCategories }})</span>
                             <i class="fa-solid fa-list fa-2xl"></i>
                     </a>
                 </div>
 
                 <div class="p-6">
                     <a href="{{ route('codetag.index') }}">
-                            <span>Tags ()</span>
+                            <span>Tags ({{ $totalTags }})</span>
                             <i class="fa-solid fa-tags fa-2xl"></i>
                     </a>
-                </div>
+                </div> --}}
 
 
             </div>           

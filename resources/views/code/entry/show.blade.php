@@ -247,7 +247,7 @@
                 </div>
             </div>
             <!-- Files -->
-            {{-- <div class="py-2 px-4 sm:mx-12">
+            <div class="py-2 px-4 sm:mx-12">
                 <div class="px-16">
                     <h2 class="text-lg font-semibold py-2">Files ({{ $files->count() }})</h2>
                 </div>
@@ -388,7 +388,7 @@
 
                     </div>
                 </div>
-            </div> --}}
+            </div>
 
             <!-- Buttons -->
             <div class="flex flex-col justify-start sm:flex-row sm:justify-between p-4 gap-4 border-t-2 mt-8">
