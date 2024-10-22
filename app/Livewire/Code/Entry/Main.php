@@ -34,6 +34,12 @@ class Main extends Component
 
     // filters    
     public $showFilters = 0;
+
+    public $dateFrom = '';
+    public $initialDateFrom;
+    public $dateTo = '';
+    public $initialDateTo;
+
     #[Url(as: 'ty', except: '')]
     public $tipo = 0;
     #[Url(as: 'c', except: '')]
@@ -55,7 +61,16 @@ class Main extends Component
         $this->resetPage();
     }
 
-    public function mount() {}
+    public function mount() {
+        $this->dateFrom = date('Y-m-d', strtotime(CodeEntry::min('created_at')));
+        $this->initialDateFrom = date('Y-m-d', strtotime(CodeEntry::min('created_at')));
+        $this->dateTo = date('Y-m-d', strtotime(CodeEntry::max('created_at')));
+        $this->initialDateTo = date('Y-m-d', strtotime(CodeEntry::max('created_at')));
+        /* $this->dateFrom = CodeEntry::min('created_at');
+        $this->initialDateFrom = CodeEntry::min('created_at');
+        $this->dateTo = CodeEntry::max('created_at');
+        $this->initialDateTo = CodeEntry::max('created_at'); */
+    }
 
     /*
     TODO: Make selectAll with search and filters
@@ -75,9 +90,21 @@ class Main extends Component
     
     public function clearFilters()
     {
+        $this->dateFrom = date('Y-m-d', strtotime(CodeEntry::min('created_at')));
+        $this->dateTo = date('Y-m-d', strtotime(CodeEntry::max('created_at')));
+        /* $this->dateFrom = CodeEntry::min('created_at');
+        $this->dateTo = CodeEntry::max('created_at'); */
         $this->tipo = 0;
         $this->cat = 0;
         $this->selectedTags = [];
+    }
+
+    public function clearFilterDate()
+    {
+        $this->dateFrom = date('Y-m-d', strtotime(CodeEntry::min('created_at')));
+        $this->dateTo = date('Y-m-d', strtotime(CodeEntry::max('created_at')));
+        /* $this->dateFrom = CodeEntry::min('created_at');
+        $this->dateTo = CodeEntry::max('created_at'); */
     }
 
     public function clearFilterTipo()
@@ -182,6 +209,17 @@ class Main extends Component
             ->distinct('code_entries.id')
             ->orderby($this->orderColumn, $this->sortOrder);
 
+        // interval date filter
+        if (isset($this->dateFrom)) {
+            if ($this->dateFrom <= $this->dateTo) {                                
+                $entries = $entries->whereDate('code_entries.created_at', '>=', $this->dateFrom)
+                ->whereDate('code_entries.created_at', '<=', $this->dateTo);
+            }
+            else {
+                //dd('errorcito');
+            }
+        }        
+        
         // tipo filter
         if ($this->tipo != 0) {
             $entries = $entries->where('code_types.name', '=', $this->tipo);
