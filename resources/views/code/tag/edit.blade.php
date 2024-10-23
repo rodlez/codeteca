@@ -5,7 +5,7 @@
         <div class="flex flex-row justify-start items-start gap-1 text-sm py-3 px-4 text-slate-500">
             <a href="/dashboard/tag" class="hover:text-orange-600">Tags</a> /
             <a href="/dashboard/tag/{{ $tag->id }}" class="hover:text-orange-600">Info</a> /
-            <a href="/dashboard/tag/edit/{{ $tag->id }}" class="font-bold text-black border-b-2 border-b-orange-500">Edit</a>
+            <a href="/dashboard/tag/edit/{{ $tag->id }}" class="font-bold text-black border-b-2 border-b-orange-600">Edit</a>
         </div>
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

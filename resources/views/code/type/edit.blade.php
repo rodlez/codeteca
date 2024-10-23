@@ -5,7 +5,7 @@
         <div class="flex flex-row justify-start items-start gap-1 text-sm py-3 px-4 text-slate-500">
             <a href="/dashboard/type" class="hover:text-yellow-600">Types</a> /
             <a href="/dashboard/type/{{ $type->id }}" class="hover:text-yellow-600">Info</a> /
-            <a href="/dashboard/type/edit/{{ $type->id }}" class="font-bold text-black border-b-2 border-b-yellow-500">Edit</a>
+            <a href="/dashboard/type/edit/{{ $type->id }}" class="font-bold text-black border-b-2 border-b-yellow-600">Edit</a>
         </div>
 
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">

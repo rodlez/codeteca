@@ -14,10 +14,10 @@
 
     <!-- Help -->
     @if ($show % 2 != 0)
-        <div class="mx-auto w-fit pt-4 pb-0">
-            <div class="bg-gray-200 text-sm text-black font-bold p-2 mx-2 rounded-lg border-2 border-gray-400 relative">
-                Add more tags using the Add button</i>
-                <button wire:click.prevent="help"><i class="fa-solid fa-circle-xmark text-red-600 absolute -top-2 -right-3" title="Close"></i></button>
+        <div class="flex flex-row justify-start w-fit pt-4 px-4 sm:px-12">
+            <div class="bg-black text-sm text-white p-2 mx-2 rounded-lg relative">
+                <span class="text-yellow-400 font-bold">HELP - </span> Add multiple tags using the Add button.
+                <button wire:click.prevent="help"><i class="fa-lg fa-solid fa-circle-xmark text-red-600 hover:text-red-400 transition duration-1000 ease-in-out absolute top-0 -right-2" title="Close"></i></button>
             </div>
         </div>
     @endif

@@ -1,9 +1,8 @@
-<div class="bg-white shadow rounded-xl mx-4">
+<div>
 
     <!-- Header -->
-    <div class="flex flex-row justify-between items-center py-4 bg-green-600 rounded-t-lg">
+    <div class="flex flex-row justify-between items-center py-4 bg-green-600">
         <div>
-            <i class="fa-lg sm:fa-2x fa-solid fa-laptop-code pl-4 text-white"></i>
             <span class="text-lg text-white px-4">New Entry </span>
         </div>
         <div class="px-4">

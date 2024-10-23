@@ -59,18 +59,18 @@
                             <th wire:click="sorting('name')" scope="col" class="p-2 hover:cursor-pointer hover:text-blue-600 {{ $column == 'name' ? 'text-blue-600' : '' }}">name {!! $sortLink !!}</th>
                             <th wire:click="sorting('created_at')" scope="col" class="p-2 hover:cursor-pointer hover:text-blue-600 {{ $column == 'created_at' ? 'text-blue-600' : '' }}">created {!! $sortLink !!}</th>
                             <th wire:click="sorting('updated_at')" scope="col" class="p-2 hover:cursor-pointer hover:text-blue-600 {{ $column == 'updated_at' ? 'text-blue-600' : '' }}">updated {!! $sortLink !!}</th>
-                            <th scope="col" class="p-2 text-center"> actions </th>
+                            <th scope="col" class="p-2 text-center capitalize">actions</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         @foreach ($categories as $category)
-                            <tr class="even:bg-zinc-200 odd:bg-gray-300 transition-all duration-1000 hover:bg-yellow-400">
-                                <td class="p-2 whitespace-nowrap text-md text-center leading-6 font-medium text-gray-900"><input wire:model.live="selections" type="checkbox" class="text-green-600 outline-none focus:ring-0 checked:bg-green-500" value={{ $category->id }}></td>
-                                <td class="p-2 whitespace-nowrap text-md leading-6 font-medium text-gray-900">{{ $category->id }}</td>
-                                <td class="p-2 whitespace-nowrap text-md leading-6 font-medium text-gray-900"><a href="{{ route('codecategory.show', $category) }}">{{ $category->name }}</a></td>
-                                <td class="p-2 whitespace-nowrap text-md leading-6 font-medium text-gray-900">{{ date('d-m-Y', strtotime($category->created_at)) }}</td>
-                                <td class="p-2 whitespace-nowrap text-md leading-6 font-medium text-gray-900">{{ date('d-m-Y', strtotime($category->updated_at)) }}</td>
+                            <tr class="text-black text-sm leading-6 even:bg-zinc-200 odd:bg-gray-300 transition-all duration-1000 hover:bg-yellow-400">
+                                <td class="p-2 text-center"><input wire:model.live="selections" type="checkbox" class="text-green-600 outline-none focus:ring-0 checked:bg-green-500" value={{ $category->id }}></td>
+                                <td class="p-2">{{ $category->id }}</td>
+                                <td class="p-2"><a href="{{ route('codecategory.show', $category) }}">{{ $category->name }}</a></td>
+                                <td class="p-2">{{ date('d-m-Y', strtotime($category->created_at)) }}</td>
+                                <td class="p-2">{{ date('d-m-Y', strtotime($category->updated_at)) }}</td>
                                 <td class="p-2">
                                     <div class="flex justify-center items-center gap-2">
                                         <!-- Show -->
@@ -98,13 +98,13 @@
                     </tbody>
                 </table>
             @else
-                <div class="bg-zinc-200 text-red-600 rounded-lg p-4 mx-2 sm:mx-0">
-                    <span>No categories found</span>
-                    <a wire:click.prevent="clearSearch" title="Reset">
-                        <i class="fa-lg fa-solid fa-circle-xmark px-2"></i>
-                    </a>
-                    </span>
-                </div>
+            <div class="flex flex-row justify-between items-center bg-black text-white rounded-lg p-4 mx-2 sm:mx-0">
+                <span>No categories found in the system.</span>
+                <a wire:click.prevent="clearSearch" title="Reset">
+                    <i class="fa-lg fa-solid fa-circle-xmark cursor-pointer px-2 text-red-600 hover:text-red-400 transition duration-1000 ease-in-out"></i>
+                </a>
+                </span>
+            </div>
             @endif
 
         </div>

@@ -12,22 +12,13 @@
                 title="Create New Entry">New</a>
         </div>
     </div>
-
-    <!-- Filters -->
+    <!-- Filters Text-->
     <div class="flex flex-row justify-between items-center py-2 mx-4 mt-2 border-green-600 border-b-2 w-100 sm:w-100">
         <div>
             <i class="fa-lg fa-solid fa-filter text-green-600 pl-4"></i>
-            <span class="px-2 text-lg text-zinc-800">Filters
-                <span class="text-xs md:text-md font-semibold">
-                    <span
-                        class="text-violet-600">{{ $initialDateTo != $dateTo || $initialDateFrom != $dateFrom ? '(Date)' : '' }}</span>
-                    <span class="text-yellow-600">{{ $tipo > 0 ? '(Type)' : '' }}</span>
-                    <span class="text-blue-600">{{ $cat > 0 ? '(Category)' : '' }}</span>
-                    <span
-                        class="text-orange-600">{{ !in_array('0', $this->selectedTags) && count($this->selectedTags) > 0 ? '(Tags)' : '' }}</span>
-                </span>
-            </span>
+            <span class="px-2 text-lg text-zinc-800">Filters</span>
         </div>
+        <!-- Open/Close Buttons -->
         <div>
             @if ($showFilters % 2 != 0)
                 <a wire:click="activateFilter" class="cursor-pointer tooltip">
@@ -42,7 +33,7 @@
             @endif
         </div>
     </div>
-
+    <!-- Filters -->
     @if ($showFilters % 2 != 0)
         <div class="text-black bg-gray-200 border-black border-2 rounded-lg mx-4 my-2 py-2 w-100">
             <!-- Date -->
@@ -50,13 +41,9 @@
                 class="flex flex-col justify-start items-start sm:flex-row sm:justify-between sm:items-center gap-1 px-4 py-2 ">
 
                 <div class="w-full px-2 md:w-40 md:mx-auto md:text-start">
-
-                    <span><i class="fa-lg fa-solid fa-calendar-days"></i></span>
+                    <span><i class="text-violet-600 fa-lg fa-solid fa-calendar-days"></i></span>
                     <span class="px-2">Date</span>
-
-
                 </div>
-
 
                 <div class="flex flex-col justify-start items-start w-full md:w-1/2 md:text-start">
                     <div class="w-full md:w-80">
@@ -86,23 +73,20 @@
                             @endif
                         </div>
                     </div>
-
+                    <!-- Filter Error Date -->
                     <div>
                         @if ($dateTo < $dateFrom)
                             <span class="text-sm text-red-600 px-2">To must be bigger than From</span>
                         @endif
                     </div>
-
-
                 </div>
 
             </div>
-
             <!-- Type -->
             <div
                 class="flex flex-col justify-start items-start sm:flex-row sm:justify-between sm:items-center gap-1 px-4 py-2 ">
                 <div class="w-full px-2 md:w-40 md:mx-auto md:text-start">
-                    <span><i class="fa-lg fa-solid fa-sitemap"></i></span>
+                    <span><i class="text-yellow-600 fa-lg fa-solid fa-sitemap"></i></span>
                     <span class="px-2">Type (<span class="font-semibold text-sm">{{ count($types) }}</span>)</span>
                 </div>
                 <div class="flex flex-row items-center w-full md:w-1/2 md:text-start">
@@ -124,7 +108,7 @@
             <div
                 class="flex flex-col justify-start items-start sm:flex-row sm:justify-between sm:items-center gap-1 px-4 py-2 ">
                 <div class="w-full px-2 md:w-40 md:mx-auto md:text-start ">
-                    <span><i class="fa-lg fa-solid fa-list"></i></span>
+                    <span><i class="text-blue-600 fa-lg fa-solid fa-list"></i></span>
                     <span class="px-2">Category (<span
                             class="font-semibold text-sm">{{ count($categories) }}</span>)</span>
                 </div>
@@ -147,7 +131,7 @@
             <div
                 class="flex flex-col justify-start items-start sm:flex-row sm:justify-between sm:items-start gap-1 px-4 py-2">
                 <div class="w-full px-2 md:w-40 md:mx-auto md:text-start ">
-                    <span><i class="fa-lg fa-solid fa-tags"></i></span>
+                    <span><i class="text-orange-600 fa-lg fa-solid fa-tags"></i></span>
                     <span class="px-2">Tags (<span class="font-semibold text-sm">{{ count($tags) }}</span>)</span>
                 </div>
                 <div class="flex flex-row items-start w-full md:w-1/2 md:text-start">
@@ -169,8 +153,7 @@
             <!-- Reset Filters -->
             <div class="flex flex-row md:justify-end md:w-full px-4 pb-2 pt-0">
                 <div class="w-full md:w-1/2">
-                    <button type="button"
-                        class="w-full md:w-80 bg-black text-white p-2 hover:bg-slate-700 rounded-lg"
+                    <button type="button" class="w-full md:w-80 bg-black text-white p-2 hover:bg-slate-700 rounded-lg"
                         wire:click="clearFilters">
                         <span> Reset Filters </span>
                         <span class="px-2"><i class="fa-solid fa-delete-left"></i></span>
@@ -182,7 +165,6 @@
     @endif
     <!-- Search -->
     <div class="flex flex-col items-start sm:justify-between sm:flex-row px-4 py-4 w-100 gap-2">
-        <!-- Search -->
         <div class="relative w-full">
             <div class="absolute top-2.5 bottom-0 left-4 text-slate-700">
                 <i class="fa-lg fa-solid fa-magnifying-glass"></i>
@@ -205,7 +187,6 @@
             </select>
         </div>
     </div>
-
     <!-- Criteria -->
     @if (
         $search != '' ||
@@ -214,24 +195,68 @@
             $tipo > 0 ||
             $cat > 0 ||
             (!in_array('0', $this->selectedTags) && count($this->selectedTags) != 0))
-        <div
-            class="flex flex-row justify-between items-center rounded-lg mx-4 py-2 px-4 bg-zinc-100 border-2 border-zinc-300">
-            <div>
-                <p class="text-sm font-semibold">
-                    <span class="text-lg text-black">Criteria > </span>
-                    <span class="text-orange-400">{{ $search != '' ? 'Search' : '' }}</span>
+        <div class="mx-4 pb-2 px-2">
+            <span class="text-black font-bold">Search Criteria</span>
+        </div>
+
+        <div class="flex flex-row justify-between items-center rounded-lg mx-4 bg-gray-200 border-2 border-black">
+            <div class="flex flex-wrap text-white text-xs w-full p-2 gap-3 sm:gap-4">
+
+                @if ($search != '')
+                <div class="flex relative">
+                    <span class="bg-green-600 p-2 rounded-lg">{{ $search != '' ? 'Search' : '' }}</span>
+                    <a wire:click.prevent="clearSearch" title="Clear" class="cursor-pointer">
+                        <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                                class="fa-lg fa-solid fa-circle-xmark"></i></span>
+                    </a>
+                </div>
+                    
+                @endif
+                @if ($initialDateTo != $dateTo || $initialDateFrom != $dateFrom)
+                <div class="flex relative">
                     <span
-                        class="text-violet-400">{{ $initialDateTo != $dateTo || $initialDateFrom != $dateFrom ? 'Dates (' . date('d-m-Y', strtotime($dateFrom)) . ' - ' . date('d-m-Y', strtotime($dateTo)) . ')' : '' }}</span>
-                    <span class="text-yellow-600">{{ $tipo > 0 ? 'Type (' . $tipo . ')' : '' }}</span>
-                    <span class="text-blue-600">{{ $cat > 0 ? 'Category (' . $cat . ')' : '' }}</span>
+                        class="bg-violet-400 p-2 rounded-lg">{{ $initialDateTo != $dateTo || $initialDateFrom != $dateFrom ? 'Dates (' . date('d-m-Y', strtotime($dateFrom)) . ' to ' . date('d-m-Y', strtotime($dateTo)) . ')' : '' }}</span>
+                    <a wire:click.prevent="clearFilterDate" title="Clear" class="cursor-pointer">
+                        <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                                class="fa-lg fa-solid fa-circle-xmark"></i></span>
+                    </a>
+                </div>                    
+                @endif
+                @if ($tipo > 0)
+                    <div class="flex relative">
+                        <span
+                            class="bg-yellow-600 p-2 rounded-lg">{{ $tipo > 0 ? 'Type (' . $tipo . ')' : '' }}</span>
+                        <a wire:click.prevent="clearFilterTipo" title="Clear" class="cursor-pointer">
+                            <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                                    class="fa-lg fa-solid fa-circle-xmark"></i></span>
+                        </a>
+                    </div>
+                @endif
+                @if ($cat > 0)
+                <div class="flex relative">
+                    <span class="bg-blue-600 p-2 rounded-lg">{{ $cat > 0 ? 'Category (' . $cat . ')' : '' }}</span>
+                    <a wire:click.prevent="clearFilterCat" title="Clear" class="cursor-pointer">
+                        <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                                class="fa-lg fa-solid fa-circle-xmark"></i></span>
+                    </a>
+                </div>
+                @endif
+                @if (!in_array('0', $this->selectedTags) && count($this->selectedTags) != 0)
+                <div class="flex relative">
                     <span
-                        class="text-orange-600">{{ !in_array('0', $this->selectedTags) && count($this->selectedTags) != 0 ? 'Tags (' . implode(', ', $tagNames) . ')' : '' }}</span>
-                </p>
+                    class="bg-orange-600 p-2 rounded-lg">{{ !in_array('0', $this->selectedTags) && count($this->selectedTags) != 0 ? 'Tags (' . implode(', ', $tagNames) . ')' : '' }}</span>                    
+                    <a wire:click.prevent="clearFilterTag" title="Clear" class="cursor-pointer">
+                        <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                                class="fa-lg fa-solid fa-circle-xmark"></i></span>
+                    </a>
+                </div>
+                @endif
+
             </div>
-            <div>
+            <div class="flex">
                 <span class="text-md text-red-600 font-semibold px-4">
-                    <a wire:click.prevent="resetAll" data-tooltip="Reset">
-                        <i class="fa-lg fa-solid fa-circle-xmark hover:text-red-400 cursor-pointer px-2"></i>
+                    <a wire:click.prevent="resetAll" title="Reset Criteria">
+                        <i class="fa-lg fa-solid fa-xmark hover:text-red-400 cursor-pointer px-2"></i>
                     </a>
                 </span>
             </div>
@@ -298,7 +323,7 @@
                                         value={{ $entry->id }}></td>
                                 <td class="px-2">{{ $entry->id }}</td>
                                 <td class="px-2 cursor-pointer" title="{{ $entry->title }}">
-                                    <a href="{{ route('codeentry.show', $entry) }}" data-tooltip="See this entry">
+                                    <a href="{{ route('codeentry.show', $entry) }}">
                                         {{-- {{ excerpt($entry->title, 20) }} --}}
                                         {{ $entry->title }}
                                     </a>
@@ -314,7 +339,7 @@
                                 <td class="text-sm text-black py-2">
                                     <div class="flex flex-col justify-between items-center gap-2">
                                         @foreach ($entry->files as $file)
-                                            @include('livewire.code.entry.partial-media-file',$file)                                            
+                                            @include('livewire.code.entry.partial-media-file', $file)
                                         @endforeach
                                     </div>
                                 </td>
@@ -329,17 +354,17 @@
                                             </span>
                                         </a>
                                         <!-- Upload File -->
-                                        <a href="{{ route('codefile.index', $entry) }}" data-tooltip="Upload File"
-                                            data-tooltip-position="top">
+                                        <a href="{{ route('codefile.index', $entry) }}">
                                             <span
                                                 class="text-violet-600 hover:text-black transition-all duration-500 tooltip"><i
                                                     class="fa-solid fa-file-arrow-up"></i>
-                                                    <span class="tooltiptext">Upload File</span>
+                                                <span class="tooltiptext">Upload File</span>
                                             </span>
                                         </a>
                                         <!-- Edit -->
                                         <a href="{{ route('codeentry.edit', $entry) }}" title="Edit this entry">
-                                            <span class="text-green-600 hover:text-black transition-all duration-500"><i
+                                            <span
+                                                class="text-green-600 hover:text-black transition-all duration-500"><i
                                                     class="fa-solid fa-pen-to-square"></i></span>
                                         </a>
                                         <!-- Delete -->
@@ -364,11 +389,13 @@
 
                 </table>
             @else
-                <div class="bg-zinc-100 py-6 rounded-lg border-2 border-red-600">
-                    <span class="text-md text-red-600 font-semibold px-4">No Entries found
-                        <a wire:click.prevent="resetAll" title="Reset">
-                            <i class="fa-lg fa-solid fa-circle-xmark hover:text-red-400 cursor-pointer px-2"></i>
-                        </a>
+                <div
+                    class="flex flex-row justify-between items-center bg-black text-white rounded-lg p-4 mx-0 sm:mx-0">
+                    <span>No entries found in the system.</span>
+                    <a wire:click.prevent="resetAll" title="New Search">
+                        <i
+                            class="fa-lg fa-solid fa-circle-xmark cursor-pointer px-2 text-red-600 hover:text-red-400 transition duration-1000 ease-in-out"></i>
+                    </a>
                     </span>
                 </div>
             @endif
