@@ -14,7 +14,7 @@
 
     <!-- Help -->
     @if ($show % 2 != 0)
-        <div class="mx-auto w-11/12 pt-4 pb-0">
+        <div class="mx-auto w-fit pt-4 pb-0">
             <div class="bg-gray-200 text-sm text-black font-bold p-2 mx-2 rounded-lg border-2 border-gray-400 relative">
                 Add more tags using the Add button</i>
                 <button wire:click.prevent="help"><i class="fa-solid fa-circle-xmark text-red-600 absolute -top-2 -right-3" title="Close"></i></button>
@@ -38,7 +38,7 @@
         @foreach ($inputs as $key => $value)
             <div class="flex flex-row justify-start items-center gap-2 py-2">
 
-                <input wire:model="inputs.{{ $key }}.name" type="text" id="inputs.{{ $key }}.name" class="w-full sm:w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 placeholder:text-zinc-400 px-2" placeholder="Enter a name">
+                <input wire:model="inputs.{{ $key }}.name" type="text" id="inputs.{{ $key }}.name" class="w-full sm:w-1/2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 placeholder:text-zinc-400 px-2" placeholder="Enter a name">
                 @if ($count > 0)
                     <button wire:click="remove({{ $key }})">
                         <i class="fa-solid fa-trash text-red-600 hover:text-black transition duration-1000 ease-in-out" title="Delete"></i>

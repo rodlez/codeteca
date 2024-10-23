@@ -41,14 +41,15 @@
                     <h2 class="text-lg font-semibold py-2">Title</h2>
                 </div>
                 <div class="flex flex-row justify-start items-center gap-4">
+                    <!-- Clipboard Title Button-->
                     <span x-data="{ show: false }" class="bg-zinc-200 px-3 py-2 rounded-lg relative"
                         data-tooltip="Copy Title">
                         <button class="btn" data-clipboard-target="#title" x-on:click="show = true"
                             x-on:mouseout="show = false">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
-                        <span x-show="show" class="absolute -top-2 right-0">
-                            <i class="text-green-600 fa-regular fa-circle-check"></i>
+                        <span x-show="show" class="absolute -top-6 right-0">
+                            <span class="bg-yellow-400 text-black rounded-lg p-2 opacity-100">Copied</span>
                         </span>
                     </span>
                     <div id="title" value="{{ $entry->title }}"
@@ -112,7 +113,6 @@
                                 class="inline-flex items-center rounded-md bg-orange-400 p-2 text-sm font-medium text-black ring-1 ring-inset ring-orange-600/20">{{ $tag }}</span>
                         @endforeach
                     </div>
-
                 </div>
             </div>
             <!-- Url -->
@@ -123,17 +123,18 @@
                 @if ($entry->url != null && $entry->url != '[]')
                     @foreach (json_decode($entry->url) as $key => $url)
                         <div class="flex flex-row justify-start items-center gap-4 py-2">
-
+                            <!-- Clipboard Url Button-->
                             <span x-data="{ show: false }" class="bg-zinc-200 px-3 py-2 rounded-lg relative"
                                 data-tooltip="Copy Url">
                                 <button class="btn" data-clipboard-target="#url{{ $key }}"
                                     x-on:click="show = true" x-on:mouseout="show = false">
                                     <i class="fa-solid fa-globe"></i>
                                 </button>
-                                <span x-show="show" class="absolute -top-2 right-0">
-                                    <i class="text-green-600 fa-regular fa-circle-check"></i>
+                                <span x-show="show" class="absolute -top-6 right-0">
+                                    <span class="bg-yellow-400 text-black rounded-lg p-2 opacity-100">Copied</span>
                                 </span>
-                            </span>
+                            </span>                            
+                            <!-- Url Input -->    
                             <div id="url{{ $key }}"
                                 class="w-full p-2 text-md rounded-lg bg-gray-200 border border-gray-300 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-orange-500 focus:border-orange-500">
                                 {{ $url }}
@@ -167,20 +168,20 @@
                     </span>
                     @if (strip_tags($entry->info) != '')
                         <div class="flex relative w-full">
+                            <!-- Quill Editor -->
                             <div id="quill_editor"
                                 class="w-full p-2 text-md rounded-lg bg-gray-200 border border-gray-300 text-gray-900 dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-orange-500 focus:border-orange-500 ">
                                 {!! $entry->info !!}
                             </div>
-
-                            <span x-data="{ show: false }"
-                                class="bg-zinc-300 p-2 rounded-lg absolute top-2 right-2 opacity-80 hover:opacity-100"
+                            <!-- Clipboard Info Button-->
+                            <span x-data="{ show: false }" class="bg-white p-2 rounded-lg absolute top-2 right-2"
                                 data-tooltip="Copy Info">
                                 <button class="btn" data-clipboard-target="#quill_editor" x-on:click="show = true"
                                     x-on:mouseout="show = false">
                                     <i class="fa-regular fa-clipboard"></i>
                                 </button>
-                                <span x-show="show" class="absolute -top-2 -right-2">
-                                    <i class="text-green-600 fa-regular fa-circle-check"></i>
+                                <span x-show="show" class="absolute -top-8 right-0">
+                                    <span class="bg-yellow-400 text-black rounded-lg p-2 opacity-100">Copied</span>
                                 </span>
                             </span>
                         </div>
@@ -203,24 +204,24 @@
                         <i class="fa-solid fa-laptop-code"></i>
                     </span>
                     @if ($entry->code)
-                    <div class="flex relative w-4/5 sm:w-full">
-                        
-                         <div class="w-full">
-                            <pre><code id="code" value="{{ $entry->code }}" style="border-radius: 16px; padding: 15px 30px 30px 30px !important">{{ $entry->code }}</code></pre>
-                        </div>
-
-                        <span x-data="{ show: false }" class="bg-white p-2 rounded-lg absolute top-2 right-2"
-                            data-tooltip="Copy Code">
-                            <button class="btn" data-clipboard-target="#code" x-on:click="show = true"
-                                x-on:mouseout="show = false">
-                                <i class="fa-regular fa-clipboard"></i>
-                            </button>
-                            <span x-show="show" class="absolute -top-8 right-0">
-                                <span class="bg-yellow-400 text-black rounded-lg p-2 opacity-100">Copied</span>
+                        <div class="flex relative w-4/5 sm:w-11/12">
+                            <!-- Highlightjs -->
+                            <div class="w-full">
+                                <pre><code id="code" value="{{ $entry->code }}" style="border-radius: 16px; padding: 15px 30px 30px 30px !important">{{ $entry->code }}</code></pre>
+                            </div>
+                            <!-- Clipboard Code Button-->
+                            <span x-data="{ show: false }" class="bg-white p-2 rounded-lg absolute top-2 right-2"
+                                data-tooltip="Copy Code">
+                                <button class="btn" data-clipboard-target="#code" x-on:click="show = true"
+                                    x-on:mouseout="show = false">
+                                    <i class="fa-regular fa-clipboard"></i>
+                                </button>
+                                <span x-show="show" class="absolute -top-8 right-0">
+                                    <span class="bg-yellow-400 text-black rounded-lg p-2 opacity-100">Copied</span>
+                                </span>
                             </span>
-                        </span>
-                        
-                    </div>
+
+                        </div>
                         {{-- <div class="flex relative w-full">
                             <div class="w-full bg-red-400">
                                 <pre><code id="code" value="{{ $entry->code }}" style="border-radius: 16px; padding: 15px 30px 30px 30px !important">{{ $entry->code === null ? '-' : $entry->code }}</code></pre>
@@ -271,69 +272,8 @@
                                 @foreach ($files as $file)
                                     <tr class="bg-white border-b-2 text-center">
 
-                                        @switch($file->media_type)
-                                            @case('application/vnd.ms-excel')
-                                                <td class="py-2"><i class="fa-2x fa-regular fa-file-excel"></i></td>
-                                            @break
+                                        @include('code.entry.partial-media-file', $file)
 
-                                            @case('text/csv')
-                                                <td class="py-2"><i class="fa-2x fa-solid fa-file-csv"></i></td>
-                                            @break
-
-                                            @case('text/plain')
-                                                <td class="py-2"><i class="fa-2x fa-regular fa-file-lines"></i></td>
-                                            @break
-
-                                            @case('application/javascript')
-                                                <td class="py-2"><i class="fa-2x fa-brands fa-js"></i></td>
-                                            @break
-
-                                            @case('application/pdf')
-                                                <td class="py-2"><i class="fa-2x fa-regular fa-file-pdf"></i></td>
-                                            @break
-
-                                            @case('text/html')
-                                                <td class="py-2"><i class="fa-2x fa-brands fa-html5"></i></td>
-                                            @break
-
-                                            @case('text/x-php')
-                                                <td class="py-2"><i class="fa-2x fa-brands fa-php"></i></td>
-                                            @break
-
-                                            @case('application/vnd.oasis.opendocument.text')
-                                                <td class="py-2"><i class="fa-2x fa-regular fa-file-word"></i></td>
-                                            @break
-
-                                            @case('application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-                                                <td class="py-2"><i class="fa-2x fa-regular fa-file-word"></i></td>
-                                            @break
-
-                                            @case('image/jpeg')
-                                                <td class="py-2">
-                                                    <a href="{{ asset('storage/' . $file->path) }}">
-                                                        <img src="{{ asset('storage/' . $file->path) }}"
-                                                            class="w-12 md:w-24 mx-auto rounded-lg"
-                                                            title="{{ $file->original_filename }}">
-                                                    </a>
-                                                </td>
-                                            @break
-
-                                            @case('image/png')
-                                                <td class="py-2">
-                                                    <a href="{{ asset('storage/' . $file->path) }}">
-                                                        <img src="{{ asset('storage/' . $file->path) }}"
-                                                            class="w-12 md:w-24 mx-auto rounded-lg"
-                                                            title="{{ $file->original_filename }}">
-                                                    </a>
-                                                </td>
-                                            @break
-
-                                            @default
-                                                <td class="py-2"><i
-                                                        class="fa-2x fa-solid fa-triangle-exclamation text-red-600 hover:text-red-400"
-                                                        title="Not a valid Format"></i></td>
-                                        @endswitch
-                                        
                                         <td class="p-2 max-lg:hidden">
                                             {{ shortFilename(getFileName($file->original_filename), 20) }}</td>
                                         <td class="p-2 max-sm:hidden">{{ $file->created_at->format('d-m-Y') }}</td>

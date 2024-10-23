@@ -18,21 +18,21 @@
                 </a>
 
                 <a href="{{ route('codetype.index') }}">
-                    <div class="flex flex-col justify-center items-center w-52 h-52 mx-auto gap-4 rounded-lg bg-yellow-200 hover:bg-yellow-400 transition duration-1000 ease-in-out">
+                    <div class="flex flex-col justify-center items-center w-52 h-52 mx-auto gap-4 rounded-lg text-black hover:text-white bg-yellow-200 hover:bg-yellow-400 transition duration-1000 ease-in-out">
                         <i class="fa-4x fa-solid fa-sitemap"></i>
                         <span class="font-bold">Types ({{ $totalTypes }})</span>
                     </div>
                 </a>
 
                 <a href="{{ route('codecategory.index') }}">
-                    <div class="flex flex-col justify-center items-center w-52 h-52 mx-auto gap-4 rounded-lg bg-blue-200 hover:bg-blue-400 transition duration-1000 ease-in-out">
+                    <div class="flex flex-col justify-center items-center w-52 h-52 mx-auto gap-4 rounded-lg text-black hover:text-white bg-blue-200 hover:bg-blue-400 transition duration-1000 ease-in-out">
                         <i class="fa-4x fa-solid fa-list"></i>
                         <span class="font-bold">Categories ({{ $totalCategories }})</span>
                     </div>
                 </a>
 
                 <a href="{{ route('codetag.index') }}">
-                    <div class="flex flex-col justify-center items-center w-52 h-52 mx-auto gap-4 rounded-lg bg-orange-200 hover:bg-orange-400 transition duration-1000 ease-in-out">
+                    <div class="flex flex-col justify-center items-center w-52 h-52 mx-auto gap-4 rounded-lg text-black hover:text-white bg-orange-200 hover:bg-orange-400 transition duration-1000 ease-in-out">
                         <i class="fa-4x fa-solid fa-tags"></i>
                         <span class="font-bold">Tags ({{ $totalTags }})</span>
                     </div>

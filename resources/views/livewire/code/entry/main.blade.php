@@ -1,7 +1,7 @@
 <div>
 
     <!-- Header -->
-    <div class="flex flex-row justify-between items-center py-4 bg-green-400">
+    <div class="flex flex-row justify-between items-center py-4 bg-green-600">
         <div>
             <span class="text-lg text-white px-4">Entries <span
                     class="text-md">({{ $search != '' ? $found : $total }})</span></span>
@@ -14,9 +14,9 @@
     </div>
 
     <!-- Filters -->
-    <div class="flex flex-row justify-between items-center py-2 mx-4 mt-2 border-green-400 border-b-2 w-100 sm:w-100">
+    <div class="flex flex-row justify-between items-center py-2 mx-4 mt-2 border-green-600 border-b-2 w-100 sm:w-100">
         <div>
-            <i class="fa-lg fa-solid fa-filter text-green-400 pl-4"></i>
+            <i class="fa-lg fa-solid fa-filter text-green-600 pl-4"></i>
             <span class="px-2 text-lg text-zinc-800">Filters
                 <span class="text-xs md:text-md font-semibold">
                     <span
@@ -32,18 +32,18 @@
             @if ($showFilters % 2 != 0)
                 <a wire:click="activateFilter" class="cursor-pointer tooltip">
                     <i class="fa-solid fa-minus"></i>
-                    <span class="tooltiptext">Close Filters</span>
+                    <span class="tooltiptext">Close</span>
                 </a>
             @else
                 <a wire:click="activateFilter" class="cursor-pointer tooltip">
                     <i class="fa-solid fa-plus"></i>
-                    <span class="tooltiptext">Open Filters</span>
+                    <span class="tooltiptext">Open</span>
                 </a>
             @endif
         </div>
     </div>
 
-    @if ($showFilters % 2 == 0)
+    @if ($showFilters % 2 != 0)
         <div class="text-black bg-gray-200 border-black border-2 rounded-lg mx-4 my-2 py-2 w-100">
             <!-- Date -->
             <div
@@ -62,35 +62,36 @@
                     <div class="w-full md:w-80">
                         <span class="text-sm font-bold px-2">From</span>
                         <div class="flex flex-row justify-center items-center">
-                        <input type="date" class="rounded-lg w-full" placeholder="From" wire:model.live="dateFrom">                        
-                        @if ($initialDateFrom != $dateFrom)
-                            <a wire:click.prevent="clearFilterDate" title="Reset Filter" class="cursor-pointer">
-                                <span class="text-red-600 hover:text-red-400 px-2">
-                                    <i class="fa-solid fa-circle-xmark"></i>
-                                </span>
-                            </a>
-                        @endif
+                            <input type="date" class="rounded-lg w-full" placeholder="From"
+                                wire:model.live="dateFrom">
+                            @if ($initialDateFrom != $dateFrom)
+                                <a wire:click.prevent="clearFilterDate" title="Reset Filter" class="cursor-pointer">
+                                    <span class="text-red-600 hover:text-red-400 px-2">
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </span>
+                                </a>
+                            @endif
                         </div>
                     </div>
                     <div class="w-full md:w-80">
                         <span class="text-sm font-bold px-2">To</span>
                         <div class="flex flex-row justify-center items-center">
-                        <input type="date" class="rounded-lg w-full" placeholder="To" wire:model.live="dateTo">
-                        @if ($initialDateTo != $dateTo)
-                            <a wire:click.prevent="clearFilterDate" title="Reset Filter" class="cursor-pointer">
-                                <span class="text-red-600 hover:text-red-400 px-2">
-                                    <i class="fa-solid fa-circle-xmark"></i>
-                                </span>
-                            </a>
-                        @endif
+                            <input type="date" class="rounded-lg w-full" placeholder="To" wire:model.live="dateTo">
+                            @if ($initialDateTo != $dateTo)
+                                <a wire:click.prevent="clearFilterDate" title="Reset Filter" class="cursor-pointer">
+                                    <span class="text-red-600 hover:text-red-400 px-2">
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </span>
+                                </a>
+                            @endif
                         </div>
                     </div>
 
                     <div>
                         @if ($dateTo < $dateFrom)
                             <span class="text-sm text-red-600 px-2">To must be bigger than From</span>
-                        @endif                        
-                </div>
+                        @endif
+                    </div>
 
 
                 </div>
@@ -168,7 +169,8 @@
             <!-- Reset Filters -->
             <div class="flex flex-row md:justify-end md:w-full px-4 pb-2 pt-0">
                 <div class="w-full md:w-1/2">
-                    <button type="button" class="w-full md:w-80 bg-black text-white p-2 hover:bg-slate-700 rounded-lg"
+                    <button type="button"
+                        class="w-full md:w-80 bg-black text-white p-2 hover:bg-slate-700 rounded-lg"
                         wire:click="clearFilters">
                         <span> Reset Filters </span>
                         <span class="px-2"><i class="fa-solid fa-delete-left"></i></span>
@@ -186,7 +188,7 @@
                 <i class="fa-lg fa-solid fa-magnifying-glass"></i>
             </div>
             <input type="search"
-                class="w-full rounded-lg pl-12 placeholder-zinc-400 focus:outline-none focus:ring-0 focus:border-green-400 border-2 border-zinc-200 placeholder:text-sm"
+                class="w-full rounded-lg pl-12 placeholder-zinc-400 focus:outline-none focus:ring-0 focus:border-green-600 border-2 border-zinc-200 placeholder:text-sm"
                 placeholder="Search by title" wire:model.live="search">
         </div>
         <!-- Pagination -->
@@ -241,8 +243,9 @@
     @if (count($selections) > 0)
         <div class="flex flex-row justify-start items-end sm:flex-row sm:justify-start gap-6 py-0 px-6">
             <span class="text-sm font-semibold">Entries Selected</span>
-            <a wire:click.prevent="bulkClear" class="cursor-pointer" title="Unselect All">
-                <span><i class="fa-solid fa-arrow-rotate-left text-green-400"></i></span>
+            <a wire:click.prevent="bulkClear" class="cursor-pointer tooltip">
+                <span><i class="fa-solid fa-arrow-rotate-left text-green-600"></i></span>
+                <span class="tooltiptext">Unselect All</span>
             </a>
             <a wire:click.prevent="bulkDelete" wire:confirm="Are you sure you want to delete this entries?"
                 class="cursor-pointer text-red-600" title="Delete">
@@ -291,7 +294,7 @@
                             <tr
                                 class="even:bg-zinc-200 odd:bg-gray-300 transition-all duration-1000 hover:bg-yellow-400">
                                 <td class="px-2"><input wire:model.live="selections" type="checkbox"
-                                        class="text-green-400 outline-none focus:ring-0 checked:bg-green-500"
+                                        class="text-green-600 outline-none focus:ring-0 checked:bg-green-500"
                                         value={{ $entry->id }}></td>
                                 <td class="px-2">{{ $entry->id }}</td>
                                 <td class="px-2 cursor-pointer" title="{{ $entry->title }}">
@@ -311,72 +314,7 @@
                                 <td class="text-sm text-black py-2">
                                     <div class="flex flex-col justify-between items-center gap-2">
                                         @foreach ($entry->files as $file)
-                                            @switch($file->media_type)
-                                                @case('application/vnd.ms-excel')
-                                                    <i class="py-2 fa-lg fa-regular fa-file-excel"
-                                                        title="{{ $file->original_filename }}"></i>
-                                                @break
-
-                                                @case('text/csv')
-                                                    <i class="py-2 fa-lg fa-solid fa-file-csv"
-                                                        title="{{ $file->original_filename }}"></i>
-                                                @break
-
-                                                @case('text/plain')
-                                                    <i class="py-2 fa-lg fa-regular fa-file-lines"
-                                                        title="{{ $file->original_filename }}"></i>
-                                                @break
-
-                                                @case('application/javascript')
-                                                    <i class="py-2 fa-lg fa-brands fa-js"
-                                                        title="{{ $file->original_filename }}"></i>
-                                                @break
-
-                                                @case('application/pdf')
-                                                    <a href="{{ asset('storage/' . $file->path) }}">
-                                                        <i class="py-2 fa-lg fa-regular fa-file-pdf"
-                                                            title="{{ $file->original_filename }}"></i>
-                                                    </a>
-                                                @break
-
-                                                @case('text/html')
-                                                    <i class="py-2 fa-lg fa-brands fa-html5"
-                                                        title="{{ $file->original_filename }}"></i>
-                                                @break
-
-                                                @case('text/x-php')
-                                                    <i class="py-2 fa-lg fa-brands fa-php"
-                                                        title="{{ $file->original_filename }}"></i>
-                                                @break
-
-                                                @case('application/vnd.oasis.opendocument.text')
-                                                    <i class="py-2 fa-lg fa-regular fa-file-word"
-                                                        title="{{ $file->original_filename }}"></i>
-                                                @break
-
-                                                @case('application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-                                                    <i class="py-2 fa-lg fa-regular fa-file-word"
-                                                        title="{{ $file->original_filename }}"></i>
-                                                @break
-
-                                                @case('image/jpeg')
-                                                    <a href="{{ asset('storage/' . $file->path) }}">
-                                                        <i class="py-2 fa-lg fa-regular fa-image"
-                                                            title="{{ $file->original_filename }}"></i>
-                                                    </a>
-                                                @break
-
-                                                @case('image/png')
-                                                    <a href="{{ asset('storage/' . $file->path) }}">
-                                                        <i class="py-2 fa-lg fa-regular fa-image"
-                                                            title="{{ $file->original_filename }}"></i>
-                                                    </a>
-                                                @break
-
-                                                @default
-                                                    <i class="py-2 fa-lg fa-solid fa-triangle-exclamation text-red-600 hover:text-red-400"
-                                                        title="Not a valid Format"></i>
-                                            @endswitch
+                                            @include('livewire.code.entry.partial-media-file',$file)                                            
                                         @endforeach
                                     </div>
                                 </td>
@@ -385,21 +323,23 @@
                                         <!-- Show -->
                                         <a href="{{ route('codeentry.show', $entry) }}">
                                             <span
-                                                class="text-blue-400 hover:text-black transition-all duration-500 tooltip">
+                                                class="text-blue-600 hover:text-black transition-all duration-500 tooltip">
                                                 <i class="fa-solid fa-circle-info"></i>
-                                                <span class="tooltiptext">See this Entry</span>
+                                                <span class="tooltiptext">Open Entry</span>
                                             </span>
                                         </a>
                                         <!-- Upload File -->
                                         <a href="{{ route('codefile.index', $entry) }}" data-tooltip="Upload File"
                                             data-tooltip-position="top">
                                             <span
-                                                class="text-violet-400 hover:text-black transition-all duration-500"><i
-                                                    class="fa-solid fa-file-arrow-up"></i></span>
+                                                class="text-violet-600 hover:text-black transition-all duration-500 tooltip"><i
+                                                    class="fa-solid fa-file-arrow-up"></i>
+                                                    <span class="tooltiptext">Upload File</span>
+                                            </span>
                                         </a>
                                         <!-- Edit -->
                                         <a href="{{ route('codeentry.edit', $entry) }}" title="Edit this entry">
-                                            <span class="text-blue-600 hover:text-black transition-all duration-500"><i
+                                            <span class="text-green-600 hover:text-black transition-all duration-500"><i
                                                     class="fa-solid fa-pen-to-square"></i></span>
                                         </a>
                                         <!-- Delete -->
@@ -442,7 +382,7 @@
         {{ $entries->links() }}
     </div>
     <!-- Footer -->
-    <div class="flex flex-row justify-end items-center py-4 px-4 bg-green-400 sm:rounded-b-lg">
+    <div class="flex flex-row justify-end items-center py-4 px-4 bg-green-600 sm:rounded-b-lg">
         <a href="{{ route('dashboard') }}">
             <i class="fa-lg fa-solid fa-backward-step text-white hover:text-black transition duration-1000 ease-in-out"
                 title="Go Back"></i>
