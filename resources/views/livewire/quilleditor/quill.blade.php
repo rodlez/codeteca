@@ -6,7 +6,9 @@
             id="{{ $quillId }}"
             wire:key={{$quillId}}
             style="
-    font-size: 1rem;"
+    font-size: 1rem;
+    border-radius: 0px 0px 5px 5px;
+    "
         >
         {!!$value!!}
         </div>
@@ -14,14 +16,10 @@
  
 
     <!-- Initialize Quill editor -->
-    <script>
-       
-       
+    <script>       
         const quill = new Quill('#{{ $quillId }}', {
             theme: 'snow'
-        });       
-        
-        console.log(quill);               
+        });            
        
         // Data Binding to the Livewire Component, by adding a quill event listener. 
         quill.on('text-change', function() {

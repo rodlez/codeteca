@@ -25,7 +25,7 @@ class Main extends Component
     public $orderColumn = "id";
     #[Url(as: 'so', except: '')]
     public $sortOrder = "desc";
-    public $sortLink = '<i class="fa-solid fa-caret-down pl-2"></i>';
+    public $sortLink = '<i class="fa-solid fa-caret-down"></i>';
     public $perPage = 25;
 
     // search
@@ -161,7 +161,7 @@ class Main extends Component
             $caretOrder = 'up';
         }
 
-        $this->sortLink = '<i class="fa-solid fa-caret-' . $caretOrder . ' pl-2"></i>';
+        $this->sortLink = '<i class="fa-solid fa-caret-' . $caretOrder . '"></i>';
         $this->orderColumn = $columnName;
     }
     public function render()

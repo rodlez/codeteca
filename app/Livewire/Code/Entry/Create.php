@@ -40,7 +40,8 @@ class Create extends Component
          'category_id'   => 'required',
          'selectedTags'  => 'required',
          //'url'           => 'nullable|url',
-         'info'          => 'nullable|min:12',
+         // Because Quill Editor include at least <p></p>, always have at least 7 extra characters
+         'info'          => 'nullable|min:10',
          'code'          => 'nullable|min:3',
          'inputs.*.url'  => 'nullable|min:3'
      ];
@@ -48,8 +49,9 @@ class Create extends Component
      protected $messages = [
          'type_id.required' => 'Select one type.',
          'category_id.required' => 'Select one category.',
-         'selectedTags.required' => 'At least 1 tag must be selected.',
-         'inputs.*.url.min' => 'The field url must have at least 3 characters',
+         'selectedTags.required' => 'At least 1 tag must be selected.',         
+         'inputs.*.url.min' => 'The URL must have at least 3 characters',
+         'info.min' => 'The info must have at least 3 characters.'
      ];
  
      // TEST QUILL EDITOR
@@ -60,7 +62,20 @@ class Create extends Component
  
      public function quill_value_updated($value){
  
-         $this->info = $value;
+        // Remove more than 2 consecutive whitespaces
+        if ( preg_match( '/(\s){2,}/s', $value ) === 1 ) {
+
+            $value = preg_replace( '/(\s){2,}/s', '', $value );
+            
+        }
+        
+        // Because Quill Editor includes <p><br></p> in case you type and then leave the input blank
+        if($value == "<p><br></p>" || $value == "<h1><br></h1>" || $value == "<h2><br></h2>" || $value == "<h3><br></h3>" || $value == "<p></p>" || $value == "<p> </p>") 
+        { 
+            $value = null;
+        }
+        
+        $this->info = $value;
  
      }
  

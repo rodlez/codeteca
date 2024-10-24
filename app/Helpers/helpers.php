@@ -51,7 +51,7 @@ function excerpt(string $input, int $length, bool $ellipses = true, bool $strip_
 
     //find last space within length
     $last_space = strrpos(substr($input, 0, $length), ' ');
-    dd($last_space);
+    //dd($last_space);
     $trimmed_text = substr($input, 0, $last_space);
 
     //add ellipses (...)
