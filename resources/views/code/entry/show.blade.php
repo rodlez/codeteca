@@ -21,14 +21,14 @@
                     <span class="text-xl text-white font-bold capitalize sm:mt-8 mx-4">Entry Information</span>
                     <div class="flex flex-row justify-end items-end gap-4 w-fit sm:mt-8 mx-2">
                         <!-- PDF -->
-                        <a href="{{ route('pdf.generate', $entry) }}" title="Download as PDF"
-                            >
-                            <i class="fa-solid fa-file-pdf text-white hover:text-orange-600 transition-all duration-500"></i>
+                        <a href="{{ route('pdf.generate', $entry) }}" title="Download as PDF">
+                            <i
+                                class="fa-solid fa-file-pdf text-white hover:text-orange-600 transition-all duration-500"></i>
                         </a>
                         <!-- Edit -->
-                        <a href="{{ route('codeentry.edit', $entry) }}" title="Edit"
-                            >
-                            <i class="fa-solid fa-pencil text-white hover:text-blue-600 transition-all duration-500"></i>
+                        <a href="{{ route('codeentry.edit', $entry) }}" title="Edit">
+                            <i
+                                class="fa-solid fa-pencil text-white hover:text-blue-600 transition-all duration-500"></i>
                         </a>
                         <!-- Delete -->
                         <form action="{{ route('codeentry.destroy', $entry) }}" method="POST">
@@ -37,8 +37,10 @@
                             <!-- Dirtective to Override the http method -->
                             @method('DELETE')
                             <button
-                                onclick="return confirm('Are you sure you want to delete the entry: {{ $entry->title }}?')" title="Delete">
-                                <i class="fa-solid fa-trash pr-4 text-white hover:text-red-600 transition-all duration-500"></i>
+                                onclick="return confirm('Are you sure you want to delete the entry: {{ $entry->title }}?')"
+                                title="Delete">
+                                <i
+                                    class="fa-solid fa-trash pr-4 text-white hover:text-red-600 transition-all duration-500"></i>
                             </button>
                         </form>
                     </div>
@@ -128,8 +130,8 @@
                                 <span class="sm:text-lg font-bold sm:font-normal sm:w-24">URL</span>
                             </div>
                             <div class="flex flex-row justify-start items-center w-full gap-2">
-                                <div id="url{{ $key }}"
-                                    class="text-sm overflow-hidden w-full px-8 sm:px-2">{{ $url }}
+                                <div id="url{{ $key }}" class="text-sm overflow-hidden w-full px-8 sm:px-2">
+                                    {{ $url }}
                                 </div>
                                 <a href="{{ $url }}" target="_blank" title="Open Url">
                                     <i class="fa-solid fa-up-right-from-square px-2"></i>
@@ -288,7 +290,7 @@
                 </div>
 
                 <div class="bg-black py-4 sm:rounded-b-md">
-                    
+
                 </div>
 
 
@@ -296,7 +298,12 @@
 
 
         </div>
-        
+
+        <!-- To the Top Button -->
+        <button id="to-top" class="to-top-btn">
+            {{-- <img src="/images/web/up-arrow.png" alt="" /> --}}
+            UP
+        </button>
 
         <!-- Footer -->
         <div class="py-4 flex flex-row justify-end items-center px-4 bg-green-600 sm:rounded-b-lg">
