@@ -16,7 +16,11 @@
     @break
 
     @case('application/pdf')
-        <td class="py-2"><i class="fa-2x fa-regular fa-file-pdf"></i></td>
+        <td class="py-2">
+            <a href="{{ asset('storage/' . $file->path) }}" title="Open PDF">
+                <i class="fa-2x fa-regular fa-file-pdf"></i>
+            </a>
+        </td>
     @break
 
     @case('text/html')
@@ -37,18 +41,16 @@
 
     @case('image/jpeg')
         <td class="py-2">
-            <a href="{{ asset('storage/' . $file->path) }}">
-                <img src="{{ asset('storage/' . $file->path) }}" class="w-12 md:w-24 mx-auto rounded-lg"
-                    title="{{ $file->original_filename }}">
+            <a href="{{ asset('storage/' . $file->path) }}" title="Open Image">
+                <img src="{{ asset('storage/' . $file->path) }}" class="w-12 md:w-24 mx-auto rounded-lg">
             </a>
         </td>
     @break
 
     @case('image/png')
         <td class="py-2">
-            <a href="{{ asset('storage/' . $file->path) }}">
-                <img src="{{ asset('storage/' . $file->path) }}" class="w-12 md:w-24 mx-auto rounded-lg"
-                    title="{{ $file->original_filename }}">
+            <a href="{{ asset('storage/' . $file->path) }}" title="Open Image">
+                <img src="{{ asset('storage/' . $file->path) }}" class="w-12 md:w-24 mx-auto rounded-lg">
             </a>
         </td>
     @break

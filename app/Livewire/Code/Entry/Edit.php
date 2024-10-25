@@ -30,16 +30,17 @@ class Edit extends Component
         'type_id'       => 'required',
         'category_id'   => 'required',
         'selectedTags'  => 'required',
-        'info'          => 'nullable',
+        'info'          => 'nullable|min:10',
         'code'          => 'nullable|min:3',
         'inputs.*.url'  => 'nullable|min:3'
     ];
 
     protected $messages = [
-        'type_id.required'      => 'The type field is required',
-        'category_id.required'  => 'The category field is required',
+        'type_id.required'      => 'The type is required',
+        'category_id.required'  => 'The category is required',
         'selectedTags.required' => 'At least 1 tag must be selected',
-        'inputs.*.url.min'      => 'The field url must have at least 3 characters',
+        'inputs.*.url.min'      => 'The URL must have at least 3 characters',
+        'info.min' => 'The info must have at least 3 characters.'
     ];
 
      // TEST QUILL EDITOR
@@ -51,6 +52,19 @@ class Edit extends Component
 
     public function quill_value_updated($value){
 
+        // Remove more than 2 consecutive whitespaces
+        if ( preg_match( '/(\s){2,}/s', $value ) === 1 ) {
+
+            $value = preg_replace( '/(\s){2,}/s', '', $value );
+            
+        }
+        
+        // Because Quill Editor includes <p><br></p> in case you type and then leave the input blank
+        if($value == "<p><br></p>" || $value == "<h1><br></h1>" || $value == "<h2><br></h2>" || $value == "<h3><br></h3>" || $value == "<p></p>" || $value == "<p> </p>") 
+        { 
+            $value = null;
+        }
+        
         $this->info = $value;
     }
 
@@ -121,7 +135,7 @@ class Edit extends Component
 
         $entry = $this->codeService->updateEntry($this->entry, $validated);
 
-        return to_route('codeentry.show', $entry)->with('message', 'Entry (' . $entry->title . ') updated.');
+        return to_route('codeentry.show', $entry)->with('message', 'Entry ID (' . $entry->id . ') updated.');
     }
 
     public function render()
