@@ -20,6 +20,11 @@
                 <div class="flex flex-row justify-between items-center py-4 sm:pb-8 sm:pt-0 sm:rounded-t-lg bg-black">
                     <span class="text-xl text-white font-bold capitalize sm:mt-8 mx-4">Entry Information</span>
                     <div class="flex flex-row justify-end items-end gap-4 w-fit sm:mt-8 mx-2">
+                        <!-- PDF -->
+                        <a href="{{ route('pdf.generate', $entry) }}" title="Download as PDF"
+                            >
+                            <i class="fa-solid fa-file-pdf text-white hover:text-orange-600 transition-all duration-500"></i>
+                        </a>
                         <!-- Edit -->
                         <a href="{{ route('codeentry.edit', $entry) }}" title="Edit"
                             >

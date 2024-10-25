@@ -6,6 +6,7 @@ use App\Http\Controllers\Code\CodeFileController;
 use App\Http\Controllers\Code\CodeTypeController;
 use App\Http\Controllers\Code\CodeCategoryController;
 use App\Http\Controllers\Code\CodeTagController;
+use App\Http\Controllers\Pdf\PDFController;
 use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Route;
@@ -66,5 +67,10 @@ Route::get('/dashboard/tag/{tag}', [CodeTagController::class, 'show'])->name('co
 Route::put('/dashboard/tag/{tag}', [CodeTagController::class, 'update'])->name('codetag.update')->middleware(['auth', 'verified']);
 Route::delete('/dashboard/tag/{tag}', [CodeTagController::class, 'destroy'])->name('codetag.destroy')->middleware(['auth', 'verified']);
 Route::get('/dashboard/tag/edit/{tag}', [CodeTagController::class, 'edit'])->name('codetag.edit')->middleware(['auth', 'verified']);
+
+// PDF
+Route::get('/dashboard/generate-pdf/{entry}', [PDFController::class, 'generatePDF'])->name('pdf.generate')->middleware(['auth', 'verified']);
+
+
 
 require __DIR__.'/auth.php';
