@@ -296,14 +296,10 @@
 
             </div>
 
-
         </div>
-
+      
         <!-- To the Top Button -->
-        <button id="to-top" class="to-top-btn">
-            {{-- <img src="/images/web/up-arrow.png" alt="" /> --}}
-            UP
-        </button>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">&uarr;</button> 
 
         <!-- Footer -->
         <div class="py-4 flex flex-row justify-end items-center px-4 bg-green-600 sm:rounded-b-lg">

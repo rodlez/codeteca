@@ -38,7 +38,7 @@
     opacity: 1;
 }
 
-// Quill Editor
+/* Quill Editor */
 
 .ql-container {    
     border-radius: 0px 0px 0px 0px;
@@ -60,22 +60,27 @@
     outline: 2px solid rgb(34 197 94);
 }
 
-// To top button
+/* to top button */
 
-.to-top-btn {
-    position: fixed;
-    z-index: 20;
-    bottom: 20px;
-    right: 20px;
-    opacity: 0;
-    width: 52px;
-    height: 52px;
-    border: none;
+#myBtn  {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 20px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: red; /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 5px 10px; /* Some padding */
     border-radius: 50%;
-    outline: none;
-    background-color: var(--bs-secondary);
-    cursor: pointer;
+    font-size: 18px; /* Increase font size */
     transition: all 0.5s ease-in-out;
-  }
+}
+  
+#myBtn:hover {
+    background-color: #000; /* Add a dark-grey background on hover */
+}
 
 

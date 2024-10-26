@@ -1,28 +1,21 @@
-/**  Make the navigation bar change color when we scroll more than X pixels vertically
- * @param {int} startPixel Number of pixels when the navbar will change color 
- * */
-function userScroll(startPixel) {
-    // To Show or Hide the top button when we scroll
-    const toTopBtn = document.querySelector('#to-top');
+/* Get the button: */
+console.log('script js loaded...');
+let mybutton = document.getElementById("myBtn");
 
-    window.addEventListener('scroll', () => {
-        if(window.scrollY > startPixel) {            
-            toTopBtn.classList.add('show');
-        } else {           
-            toTopBtn.classList.remove('show');
-        }
-    });
+/* When the user scrolls down 20px from the top of the document, show the button */
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    console.log('scrollFunction js loaded...');
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
 }
 
-/**
- * Position the DOM on the top
- */
-function scrollToTop() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
-
-// Once the DOM id loaded the functions will be executed
-document.addEventListener('DOMContentLoaded', userScroll(50));
-// Event Listener when top button is clicked
-document.querySelector('#to-top').addEventListener('click', scrollToTop);
+/* When the user clicks on the button, scroll to the top of the document */
+function parriba() {
+  document.body.scrollTop = 0; 
+  document.documentElement.scrollTop = 0; 
+}  

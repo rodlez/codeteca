@@ -23,8 +23,13 @@
     <!-- Clipboard js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
 
+    <!-- JS Scripts -->
+    <script src="{{ asset('js/script.js') }}" defer></script>
+    <!-- CSS -->
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/css/custom.css', 'resources/js/app.js', 'resources/js/script.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased">
@@ -50,12 +55,12 @@
                         <a href="{{ URL::current() }}" class="px-2">X</a>
                     </div>
                 @endif
-            </div>
+            </div>             
             {{ $slot }}
         </main>
     </div>
     @livewireScripts
-    @stack('js')
+    @stack('testini')
 </body>
 
 </html>
