@@ -140,9 +140,9 @@
                         </div>
                     @endforeach
                 @else
-                    <div class="flex flex-col sm:flex-row py-2 px-3 gap-1 border-b border-b-gray-200">
-                        <div class="flex flex-row justify-start items-center gap-2">
-                            <i class="fa-solid fa-globe"></i>
+                <div class="flex flex-col sm:flex-row py-2 px-3 gap-1 border-b border-b-gray-200">
+                    <div class="flex flex-row justify-start items-center gap-2">
+                        <i class="fa-solid fa-globe w-6 text-center p-0"></i>
                             <span class="sm:text-lg font-bold sm:font-normal sm:w-24">URL</span>
                         </div>
                         <div class="w-full px-8 sm:px-2">-</div>

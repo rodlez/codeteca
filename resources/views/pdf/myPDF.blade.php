@@ -1,53 +1,135 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Entry Information - ID({{$id}})</title>
-    <style>
-        body {
-            font-family: 'Arial, sans-serif';
-        }
-        .container {
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .header {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        .content {
-            font-size: 12px;
-        }
-        .badge {
-            background-color: yellow;
-            font-size: 0.8rem;
-            font-weight: bold;
-            color: black;
-            border-radius: 10px;
-            padding: 5px;
-        }
-    </style>
+    <title>Entry Information - ID({{ $id }})</title>
+    <!-- CSS, DomPDF requires using the absolute local path to the CSS file -->
+    <link href="{{ public_path('css/pdfTable.css') }}" rel="stylesheet">    
 </head>
+
 <body>
     <div class="container">
-        <div class="header">
-            <p>Id: {{ $id }}</p>
-            <p>Title: {{ $title }}</p>
-            <p>User: {{ $user_name }}</p>
-            <div>
-                <span class="badge">{{ $type_name }}</span>
-            </div>
-            <p>Type: {{ $type_name }}</p>
-            <p>Category: {{ $category_name }}</p>
-            <p>Tags: {{ $tag_names }}</p>
-            <p>Date: {{ $created_at }}</p>
-            <p>URL: {{ $url }}</p>
-            <p>Info: {!! $info !!}</p>
-            <p>Code: {{ $code }}</p>            
-        </div>
-        <div class="content">
-            <p>This is an example of a PDF document generated using Laravel and DomPDF.</p>
-        </div>
-    </div>
-</body>
-</html>
 
+        <table>
+
+            {{-- <thead> --}}
+                <tr>
+                    <td class="tdHeader" colspan="2">Entry Information</td>
+                </tr>
+            {{-- </thead> --}}
+
+            <tbody>
+                <tr>
+                    <td class="tdInfo">Id</td>
+                    <td>{{ $id }}</td>
+                </tr>
+                <tr>
+                    <td class="tdInfo">User</td>
+                    <td>{{ $user_name }}</td>
+                </tr>
+                <tr>
+                    <td class="tdInfo">Title</td>
+                    <td>{{ $title }}</td>
+                </tr>
+                <tr>
+                    <td class="tdInfo">Date</td>
+                    <td>{{ $date }}</td>
+                </tr>
+                <tr>
+                    <td class="tdInfo">Type</td>
+                    <td><span class="badge_type">{{ $type_name }}</span></td>
+                </tr>
+                <tr>
+                    <td class="tdInfo">Category</td>
+                    <td><span class="badge_category">{{ $category_name }}</span></td>
+                </tr>
+                <tr>
+                    <td class="tdInfo">Tags</td>
+                    <td>
+                        @foreach ($tag_names as $tag)
+                            <span class="badge_tag">{{ $tag }}</span>
+                        @endforeach
+                    </td>
+                </tr>
+                @if (isset($urls))
+                    <tr>
+                        <td class="tdInfo">Urls</td>
+                        <td>
+                            @foreach ($urls as $url)
+                                <span class="url">{{ $url }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                @else
+                    <tr>
+                        <td class="tdInfo">Url</td>
+                        <td>-</td>
+                    </tr>
+                @endif
+                @if (isset($info))
+                    <tr>
+                        <td class="tdInfo">Info</td>
+                        <td>{!! $info !!}</td>
+                    </tr>
+                @else
+                    <tr>
+                        <td class="tdInfo">Info</td>
+                        <td>-</td>
+                    </tr>
+                @endif
+                @if (isset($code))
+                    <tr>
+                        <td class="tdInfo">Code</td>
+                        <td>
+                            <pre class="code_text">{{ $code }}</pre>
+                        </td>    
+                    </tr>
+                @else
+                    <tr>
+                        <td class="tdInfo">Code</td>
+                        <td>-</td>
+                    </tr>
+                @endif
+                @if (isset($files))
+                    <tr>
+                        <td class="tdInfo">Files</td>
+                        <td>
+                            <table>
+                                <thead>
+                                    <th></th>
+                                    <th></th>
+                                    {{-- <th style="text-align:left; padding-left: 15px;">Filename</th> --}}
+                                    {{-- <th>Size (KB)</th> --}}
+                                    {{-- <th>Format</th> --}}
+                                </thead>
+
+                                @foreach ($files as $file)
+                                    <tbody>
+                                        <tr>
+                                            @include('pdf.partial-media-file', $file)
+                                            {{-- <td><img src="{{ public_path('storage/' . $file['path']) }}"
+                                                    width="100"></td> --}}
+                                            <td>{{ $file['original_filename'] }}</td>
+                                            {{-- <td>{{$file['size']}}</td> --}}
+                                            {{-- <td>{{$file['media_type']}}</td> --}}
+                                        </tr>
+                                    </tbody>
+                                @endforeach
+                            </table>
+                        </td>
+                    </tr>
+                @else
+                    <tr>
+                        <td class="tdInfo">Files</td>
+                        <td>-</td>
+                    </tr>
+                @endif
+            </tbody>            
+
+        </table>
+
+    </div>
+
+</body>
+
+</html>
