@@ -34,10 +34,17 @@ Route::get('/dashboard', [CodeEntryController::class, 'main'])->name('dashboard'
 // ENTRIES
 Route::get('/dashboard/entry', [CodeEntryController::class, 'index'])->name('codeentry.index')->middleware(['auth', 'verified']);
 Route::get('/dashboard/entry/create', [CodeEntryController::class, 'create'])->name('codeentry.create')->middleware(['auth', 'verified']);
+
+// test excel export
+Route::get('/dashboard/entry/export', [CodeEntryController::class, 'export'])->name('codeexport.index')->middleware(['auth', 'verified']);
+
+
 Route::get('/dashboard/entry/{entry}', [CodeEntryController::class, 'show'])->name('codeentry.show')->middleware(['auth', 'verified']);
 Route::put('/dashboard/entry/{entry}', [CodeEntryController::class, 'update'])->name('codeentry.update')->middleware(['auth', 'verified']);
 Route::delete('/dashboard/entry/{entry}', [CodeEntryController::class, 'destroy'])->name('codeentry.destroy')->middleware(['auth', 'verified']);
 Route::get('/dashboard/entry/edit/{entry}', [CodeEntryController::class, 'edit'])->name('codeentry.edit')->middleware(['auth', 'verified']);
+
+
 
 // FILES
 Route::get('/dashboard/entry/{entry}/file', [CodeFileController::class, 'index'])->name('codefile.index')->middleware(['auth', 'verified']);

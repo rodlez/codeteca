@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Code;
 
+use App\Exports\CodeExport;
 use App\Http\Controllers\Controller;
 use App\Models\CodeEntry;
 
@@ -10,6 +11,7 @@ use App\Services\CodeFileService;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CodeEntryController extends Controller
 {
@@ -111,5 +113,15 @@ class CodeEntryController extends Controller
 
         $entry->delete();
         return to_route('codeentry.index')->with('message', 'Entry: ' . $entry->title . ' deleted.');
+    }
+
+    /**
+     * Export the collection as excel file
+     */
+    public function export() 
+    {
+        //$caca = new CodeExport;
+        //dd($caca);
+        return Excel::download(new CodeExport, 'entries.xlsx');
     }
 }
