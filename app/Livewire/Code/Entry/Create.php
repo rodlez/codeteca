@@ -149,6 +149,8 @@ class Create extends Component
          $types = $this->codeService->getTypes();
          $categories = $this->codeService->getCategories();
          $tags = $this->codeService->getTags();
+
+         //var_dump($this->selectedTags);
  
          return view('livewire.code.entry.create', [
              'types'         => $types,

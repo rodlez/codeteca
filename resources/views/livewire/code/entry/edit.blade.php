@@ -86,9 +86,9 @@
                         title="help"></i>
                 </button>
             </div>
-            <div class="flex">
+            <div wire:ignore class="flex">
                 <span><i class="bg-zinc-200 p-3 rounded-l-md fa-solid fa-tags"></i></span>
-                <select wire:model.live="selectedTags" name="selectedTags" id="selectedTags" multiple
+                <select wire:model="selectedTags" name="selectedTags" id="selectedTags" multiple
                     class="w-full px-1 rounded-tr-md rounded-br-md rounded-bl-md bg-gray-50 border border-gray-200 text-gray-900  dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-green-500 focus:border-green-500">
                     @foreach ($tags as $tag)
                         <option value="{{ $tag->id }}"
@@ -182,6 +182,9 @@
 
     </form>
 
+    <!-- To the Top Button -->
+    <button onclick="topFunction()" id="myBtn" title="Go to top">&uarr;</button>
+
     <!-- Footer -->
     <div class="py-4 flex flex-row justify-end items-center px-4 bg-green-600 rounded-b-lg">
         <a href="{{ route('codeentry.show', $entry) }}">
@@ -189,5 +192,23 @@
                 title="Go Back"></i>
         </a>
     </div>
+
+    @script()
+    <script>
+        $(document).ready(function() {
+            $('#selectedTags').select2();
+
+            // event
+            $('#selectedTags').on('change', function (){
+                let selected = $(this).val();
+                //console.log(selected);
+                //$wire.set('selectedTags', selected); -> equivalent to model.live, makes a request for each selection
+                //$wire.set('selectedTags', selected, false);     // only update when click, equivalent to model
+                $wire.selectedTags = selected;    // same as $wire.set('selectedTags', selected, false);
+            });
+
+        });
+    </script>
+    @endscript
 
 </div>

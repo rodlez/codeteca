@@ -78,25 +78,23 @@
                 </div>
             @endif
             <!-- Tags -->
-            <h2 class="text-lg font-bold pt-2 pb-1 px-2">Tags <span class="text-red-600">*</span></h2>
-                     
-            <div class="flex flex-row">
-
-                <div class="flex items-start inset-y-0 left-0 pointer-events-none">
-                    <i class="fa-solid fa-tags bg-gray-200 p-3 rounded-l-md"></i>
-                </div>
-
-                <div wire:ignore class="w-full">
-                    <select wire:model="selectedTags" name="selectedTags" id="selectedTags" multiple>
-                        @foreach ($tags as $tag)
-                            <option value="{{ $tag->id }}" @if (old('selectedTags') == $tag->id) selected @endif>
-                                {{ $tag->name }}</option>
-                        @endforeach
-                    </select>                    
-                </div>
-
+            <div class="flex flex-row justify-between items-baseline">
+                <h2 class="text-lg font-bold pt-2 pb-1 px-2">Tags <span class="text-red-600">*</span></h2>
+                <button wire:click.prevent="help">
+                    <i class="fa-solid fa-circle-question text-black hover:text-gray-600 transition duration-1000 ease-in-out"
+                        title="help"></i>
+                </button>
             </div>
-
+            <div class="flex">
+                <span><i class="bg-zinc-200 p-3 rounded-l-md fa-solid fa-tags"></i></span>
+                <select wire:model.live="selectedTags" name="selectedTags" id="selectedTags" multiple
+                    class="w-full px-1 rounded-tr-md rounded-br-md rounded-bl-md bg-gray-50 border border-gray-200 text-gray-900  dark:bg-gray-700 dark:border-gray-600 dark:text-white focus:ring-green-500 focus:border-green-500">
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}" @if (old('selectedTags') == $tag->id) selected @endif>
+                            {{ $tag->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="text-sm text-red-600 font-bold py-1 pl-12">
                 @error('selectedTags')
                     {{ $message }}
@@ -180,9 +178,6 @@
 
     </form>
 
-    <!-- To the Top Button -->
-    <button onclick="topFunction()" id="myBtn" title="Go to top">&uarr;</button>
-
     <!-- Footer -->
     <div class="py-4 flex flex-row justify-end items-center px-4 bg-green-600 sm:rounded-b-lg">
         <a href="{{ route('codeentry.index') }}">
@@ -190,23 +185,5 @@
                 title="Go Back"></i>
         </a>
     </div>
-
-    @script()
-    <script>
-        $(document).ready(function() {
-            $('#selectedTags').select2();
-
-            // event
-            $('#selectedTags').on('change', function (){
-                let selected = $(this).val();
-                //console.log(selected);
-                //$wire.set('selectedTags', selected); -> equivalent to model.live, makes a request for each selection
-                //$wire.set('selectedTags', selected, false);     // only update when click, equivalent to model
-                $wire.selectedTags = selected;    // same as $wire.set('selectedTags', selected, false);
-            });
-
-        });
-    </script>
-    @endscript
 
 </div>
