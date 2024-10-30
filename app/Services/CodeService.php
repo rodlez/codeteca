@@ -92,8 +92,9 @@ class CodeService
         foreach ($tags as $tag) {
             $count++;
             if ($count == count($tags))
+            {
                 $result[] = $tag->name;
-
+            }
             else {
                 $result[] = $tag->name . ' ' . $separator . ' ';
             }
@@ -112,9 +113,36 @@ class CodeService
         return $tags;
     }
 
+    /**
+     *  Get array with the name of the tags for this entry
+     * 
+     * @param Code $entry
+     * @param string $separator Value to separate between tags (- / *) 
+     */
+    public function entryTagsNames(CodeEntry $entry): array
+    {
+        $tags = $entry->tags;        
+        $result = [];
+
+        foreach ($tags as $tag) {         
+                $result[] = $tag->name;         
+        }
+
+        return $result;
+    }
+
     public function getFiles(CodeEntry $entry): Collection
     {
         return CodeFile::where('code_id', $entry->id)->get();
+    }
+
+    /**
+     * Get The number of files associated to the entry
+     */
+
+    public function numberFiles(CodeEntry $entry): int
+    {
+        return CodeFile::where('code_id', $entry->id)->count();
     }
 
     /**

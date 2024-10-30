@@ -122,13 +122,9 @@ class CodeEntryController extends Controller
      * Export the collection as excel file
      */
     public function exportAll() 
-    {
-        //$testini = new CodeExport;
-        //dd($testini);
-        //$caca = new CodeExport;
-        //dd($caca);
+    {        
         $data = [];
-        return Excel::download(new CodeExport($data), 'entries.xlsx');
+        return Excel::download(new CodeExport($data, $this->codeService), 'entries.xlsx');
     }
 
      /**
@@ -137,19 +133,17 @@ class CodeEntryController extends Controller
     public function exportSelected(Request $request) 
     {
         
-        //dd($request->listin);
-        echo "listin -> " . gettype($request->listin);
-        $dataList = substr($request->listin, 1, -1);
+        //dd($request->listEntries);
+        //echo "listEntries -> " . gettype($request->listEntries);
         
-        var_dump($dataList);
+        // listEntries is a string, remove [ ] from start and end of the string
+        $stringListEntries = substr($request->listEntries, 1, -1);
 
-        $listIds = explode(',',$dataList);
-        echo "listIds -> " . gettype($listIds);
-        
+        // convert to array of Ids
+        $listIds = explode(',',$stringListEntries);
+                
         //dd($listIds);
-
-
-        return Excel::download(new CodeExport($listIds), 'entries.xlsx');
+        return Excel::download(new CodeExport($listIds, $this->codeService), 'entries.xlsx');
     }
 
 }

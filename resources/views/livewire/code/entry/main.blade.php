@@ -286,7 +286,7 @@
         <form action="{{ route('codeexporting.index') }}" method="POST">
             <!-- Add Token to prevent Cross-Site Request Forgery (CSRF) -->
             @csrf    
-            <input type="hidden" id="listin" name="listin" value="{{$entries->pluck('id')}}">   
+            <input type="hidden" id="listEntries" name="listEntries" value="{{$entries->pluck('id')}}">   
             <button class="text-black text-sm sm:text-md rounded-lg py-2 px-4 bg-gray-300 hover:bg-gray-200 transition duration-1000 ease-in-out">
                 <span class="text-xs">View
                     <i class="fa-solid fa-file-export pl-2"></i>
@@ -305,8 +305,6 @@
     </div>
     
     {{-- Entries ({{gettype($entries)}}) -> {{$entries->count()}} -> IDs ({{$entries->pluck('id')}}) --}}
-
-    
     
     <!-- Table -->
     <div class="flex flex-col p-4">
