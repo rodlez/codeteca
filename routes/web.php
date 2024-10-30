@@ -36,7 +36,8 @@ Route::get('/dashboard/entry', [CodeEntryController::class, 'index'])->name('cod
 Route::get('/dashboard/entry/create', [CodeEntryController::class, 'create'])->name('codeentry.create')->middleware(['auth', 'verified']);
 
 // test excel export
-Route::get('/dashboard/entry/export', [CodeEntryController::class, 'export'])->name('codeexport.index')->middleware(['auth', 'verified']);
+Route::get('/dashboard/entry/export', [CodeEntryController::class, 'exportAll'])->name('codeexport.index')->middleware(['auth', 'verified']);
+Route::post('/dashboard/entry/export', [CodeEntryController::class, 'exportSelected'])->name('codeexporting.index')->middleware(['auth', 'verified']);
 
 
 Route::get('/dashboard/entry/{entry}', [CodeEntryController::class, 'show'])->name('codeentry.show')->middleware(['auth', 'verified']);

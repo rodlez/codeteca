@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Maatwebsite\Excel\Facades\Excel;
 
+// test collection
+use Illuminate\Database\Eloquent\Collection;
+
 class CodeEntryController extends Controller
 {
     // Service Injection
@@ -118,10 +121,35 @@ class CodeEntryController extends Controller
     /**
      * Export the collection as excel file
      */
-    public function export() 
+    public function exportAll() 
     {
+        //$testini = new CodeExport;
+        //dd($testini);
         //$caca = new CodeExport;
         //dd($caca);
-        return Excel::download(new CodeExport, 'entries.xlsx');
+        $data = [];
+        return Excel::download(new CodeExport($data), 'entries.xlsx');
     }
+
+     /**
+     * Export the collection as excel file
+     */
+    public function exportSelected(Request $request) 
+    {
+        
+        //dd($request->listin);
+        echo "listin -> " . gettype($request->listin);
+        $dataList = substr($request->listin, 1, -1);
+        
+        var_dump($dataList);
+
+        $listIds = explode(',',$dataList);
+        echo "listIds -> " . gettype($listIds);
+        
+        //dd($listIds);
+
+
+        return Excel::download(new CodeExport($listIds), 'entries.xlsx');
+    }
+
 }

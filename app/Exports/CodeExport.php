@@ -12,12 +12,30 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class CodeExport implements FromCollection, WithHeadings
 {
+    
+    private $listIds;
+
+    public function __construct(array $listIds) 
+    {
+        $this->listIds = $listIds;
+    }
+    
+    
+    
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return CodeEntry::select("user_id", "type_id", "category_id", "title", "url", "info", "code")->get();
+        //dd($this->listIds);
+        //$listIds = [7,13,11];
+        if ($this->listIds === [])
+        {
+            return CodeEntry::select("id","user_id", "type_id", "category_id", "title", "url", "info", "code", "created_at")->get();
+        }
+        else{
+            return CodeEntry::select("id","user_id", "type_id", "category_id", "title", "url", "info", "code", "created_at")->get()->whereIn('id', $this->listIds);
+        }
     }
     
     /**
@@ -27,6 +45,6 @@ class CodeExport implements FromCollection, WithHeadings
      */
     public function headings(): array
     {
-        return ["user_id", "type_id", "category_id", "title", "url", "info", "code"];
+        return ["ID","USER_ID", "TYPE_ID", "CATEGORY_ID", "TITLE", "URL", "INFO", "CODE", "CREATED_AT"];
     }
 }

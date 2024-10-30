@@ -277,7 +277,37 @@
             </a>
         </div>
     @endif
+    
+    <!-- Export -->
+    <div class="flex flex-row justify-end items-end sm:flex-row sm:justify-end gap-2 pt-2 px-0 mx-4">
+        
+        <span class="text-xs text-green-600 pr-2">Export to Excel </span>
+        
+        <form action="{{ route('codeexporting.index') }}" method="POST">
+            <!-- Add Token to prevent Cross-Site Request Forgery (CSRF) -->
+            @csrf    
+            <input type="hidden" id="listin" name="listin" value="{{$entries->pluck('id')}}">   
+            <button class="text-black text-sm sm:text-md rounded-lg py-2 px-4 bg-gray-300 hover:bg-gray-200 transition duration-1000 ease-in-out">
+                <span class="text-xs">View
+                    <i class="fa-solid fa-file-export pl-2"></i>
+                </span>
+            </button>
+        </form>
 
+        <a href="{{ route('codeexport.index') }}"
+                class="text-white text-sm sm:text-md rounded-lg py-2 px-4 bg-black hover:bg-slate-600 transition duration-1000 ease-in-out"
+                title="Create New Entry">
+                <span class="text-xs">All
+                    <i class="fa-solid fa-file-export pl-2"></i>
+                </span>
+        </a>                
+
+    </div>
+    
+    {{-- Entries ({{gettype($entries)}}) -> {{$entries->count()}} -> IDs ({{$entries->pluck('id')}}) --}}
+
+    
+    
     <!-- Table -->
     <div class="flex flex-col p-4">
 
@@ -286,7 +316,7 @@
             @if ($entries->count())
                 <table class="table-fixed min-w-full">
                     <thead class="h-12">
-                        <tr class="text-black text-left text-sm uppercase">
+                        <tr class="text-black text-left text-sm uppercase border-t-2">
                             {{-- <th class="p-2"><input wire:model.live="selectAll" type="checkbox" class="text-orange-400 outline-none focus:ring-0 checked:bg-green-500"></th> --}}
                             <th></th>
                             <th wire:click="sorting('id')" scope="col"
