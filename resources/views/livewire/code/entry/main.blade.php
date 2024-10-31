@@ -196,34 +196,34 @@
             $cat > 0 ||
             (!in_array('0', $this->selectedTags) && count($this->selectedTags) != 0))
         <div class="mx-4 pb-1 px-2 border-b-2 border-b-green-600">
-            <span class="text-sm text-black font-bold">Search Criteria</span>            
-                <a wire:click.prevent="resetAll" title="Clear All">
-                    <i class="fa-solid fa-xmark text-red-600 hover:text-red-400 cursor-pointer px-2"></i>
-                </a>            
+            <span class="text-sm text-black font-bold">Search Criteria</span>
+            <a wire:click.prevent="resetAll" title="Clear All">
+                <i class="fa-solid fa-xmark text-red-600 hover:text-red-400 cursor-pointer px-2"></i>
+            </a>
         </div>
 
         <div class="flex flex-row justify-between items-center py-1 mx-4 ">
             <div class="flex flex-wrap text-xs text-white capitalize w-full p-2 gap-3 sm:gap-4">
                 <!-- Search -->
                 @if ($search != '')
-                <div class="flex relative">
-                    <span class="bg-green-600 p-2 rounded-lg">{{ $search != '' ? 'Search' : '' }}</span>
-                    <a wire:click.prevent="clearSearch" title="Clear" class="cursor-pointer">
-                        <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
-                                class="fa-solid fa-circle-xmark"></i></span>
-                    </a>
-                </div>
-                <!-- Date -->    
+                    <div class="flex relative">
+                        <span class="bg-green-600 p-2 rounded-lg">{{ $search != '' ? 'Search' : '' }}</span>
+                        <a wire:click.prevent="clearSearch" title="Clear" class="cursor-pointer">
+                            <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                                    class="fa-solid fa-circle-xmark"></i></span>
+                        </a>
+                    </div>
+                    <!-- Date -->
                 @endif
                 @if ($initialDateTo != $dateTo || $initialDateFrom != $dateFrom)
-                <div class="flex relative">
-                    <span
-                        class="bg-violet-400 p-2 rounded-lg">{{ $initialDateTo != $dateTo || $initialDateFrom != $dateFrom ? 'Dates (' . date('d-m-Y', strtotime($dateFrom)) . ' to ' . date('d-m-Y', strtotime($dateTo)) . ')' : '' }}</span>
-                    <a wire:click.prevent="clearFilterDate" title="Clear" class="cursor-pointer">
-                        <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
-                                class="fa-lg fa-solid fa-circle-xmark"></i></span>
-                    </a>
-                </div>                    
+                    <div class="flex relative">
+                        <span
+                            class="bg-violet-400 p-2 rounded-lg">{{ $initialDateTo != $dateTo || $initialDateFrom != $dateFrom ? 'Dates (' . date('d-m-Y', strtotime($dateFrom)) . ' to ' . date('d-m-Y', strtotime($dateTo)) . ')' : '' }}</span>
+                        <a wire:click.prevent="clearFilterDate" title="Clear" class="cursor-pointer">
+                            <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                                    class="fa-lg fa-solid fa-circle-xmark"></i></span>
+                        </a>
+                    </div>
                 @endif
                 <!-- Type -->
                 @if ($tipo > 0)
@@ -238,33 +238,35 @@
                 @endif
                 <!-- Category -->
                 @if ($cat > 0)
-                <div class="flex relative">
-                    <span class="bg-blue-600 p-2 rounded-lg">{{ $cat > 0 ? 'Category (' . $cat . ')' : '' }}</span>
-                    <a wire:click.prevent="clearFilterCat" title="Clear" class="cursor-pointer">
-                        <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
-                                class="fa-lg fa-solid fa-circle-xmark"></i></span>
-                    </a>
-                </div>
+                    <div class="flex relative">
+                        <span
+                            class="bg-blue-600 p-2 rounded-lg">{{ $cat > 0 ? 'Category (' . $cat . ')' : '' }}</span>
+                        <a wire:click.prevent="clearFilterCat" title="Clear" class="cursor-pointer">
+                            <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                                    class="fa-lg fa-solid fa-circle-xmark"></i></span>
+                        </a>
+                    </div>
                 @endif
                 <!-- Tags -->
                 @if (!in_array('0', $this->selectedTags) && count($this->selectedTags) != 0)
-                <div class="flex relative">
-                    <span
-                    class="bg-orange-600 p-2 rounded-lg">{{ !in_array('0', $this->selectedTags) && count($this->selectedTags) != 0 ? 'Tags (' . implode(', ', $tagNames) . ')' : '' }}</span>                    
-                    <a wire:click.prevent="clearFilterTag" title="Clear" class="cursor-pointer">
-                        <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
-                                class="fa-lg fa-solid fa-circle-xmark"></i></span>
-                    </a>
-                </div>
+                    <div class="flex relative">
+                        <span
+                            class="bg-orange-600 p-2 rounded-lg">{{ !in_array('0', $this->selectedTags) && count($this->selectedTags) != 0 ? 'Tags (' . implode(', ', $tagNames) . ')' : '' }}</span>
+                        <a wire:click.prevent="clearFilterTag" title="Clear" class="cursor-pointer">
+                            <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                                    class="fa-lg fa-solid fa-circle-xmark"></i></span>
+                        </a>
+                    </div>
                 @endif
-            </div>           
+            </div>
 
         </div>
     @endif
 
     <!-- Bulk Actions -->
     @if (count($selections) > 0)
-        <div class="flex flex-row justify-start items-end sm:flex-row sm:justify-start gap-3 py-2 px-2 border-b-2 border-b-green-600 mx-4">
+        <div
+            class="flex flex-row justify-start items-end sm:flex-row sm:justify-start gap-3 py-2 px-2 border-b-2 border-b-green-600 mx-4">
             <span class="text-sm font-semibold">Entries Selected</span>
             <a wire:click.prevent="bulkClear" class="cursor-pointer tooltip">
                 <span><i class="fa-solid fa-arrow-rotate-left text-green-600"></i></span>
@@ -277,17 +279,18 @@
             </a>
         </div>
     @endif
-    
+
     <!-- Export -->
     <div class="flex flex-row justify-end items-end sm:flex-row sm:justify-end gap-2 pt-2 px-0 mx-4">
-        
+
         <span class="text-xs text-green-600 pr-2">Export to Excel </span>
-        
+
         <form action="{{ route('codeexporting.index') }}" method="POST">
             <!-- Add Token to prevent Cross-Site Request Forgery (CSRF) -->
-            @csrf    
-            <input type="hidden" id="listEntries" name="listEntries" value="{{$entries->pluck('id')}}">   
-            <button class="text-black text-sm sm:text-md rounded-lg py-2 px-4 bg-gray-300 hover:bg-gray-200 transition duration-1000 ease-in-out">
+            @csrf
+            <input type="hidden" id="listEntries" name="listEntries" value="{{ $entries->pluck('id') }}">
+            <button
+                class="text-black text-sm sm:text-md rounded-lg py-2 px-4 bg-gray-300 hover:bg-gray-200 transition duration-1000 ease-in-out">
                 <span class="text-xs">View
                     <i class="fa-solid fa-file-export pl-2"></i>
                 </span>
@@ -295,17 +298,17 @@
         </form>
 
         <a href="{{ route('codeexport.index') }}"
-                class="text-white text-sm sm:text-md rounded-lg py-2 px-4 bg-black hover:bg-slate-600 transition duration-1000 ease-in-out"
-                title="Create New Entry">
-                <span class="text-xs">All
-                    <i class="fa-solid fa-file-export pl-2"></i>
-                </span>
-        </a>                
+            class="text-white text-sm sm:text-md rounded-lg py-2 px-4 bg-black hover:bg-slate-600 transition duration-1000 ease-in-out"
+            title="Create New Entry">
+            <span class="text-xs">All
+                <i class="fa-solid fa-file-export pl-2"></i>
+            </span>
+        </a>
 
     </div>
-    
+
     {{-- Entries ({{gettype($entries)}}) -> {{$entries->count()}} -> IDs ({{$entries->pluck('id')}}) --}}
-    
+
     <!-- Table -->
     <div class="flex flex-col p-4">
 
@@ -319,21 +322,26 @@
                             <th></th>
                             <th wire:click="sorting('id')" scope="col"
                                 class="hover:cursor-pointer hover:text-green-600 {{ $column == 'id' ? 'text-green-600' : '' }}">
-                                <span>Id {!! $sortLink !!}</span></th>
+                                <span>Id {!! $sortLink !!}</span>
+                            </th>
                             <th wire:click="sorting('title')" scope="col"
                                 class="hover:cursor-pointer  hover:text-green-600 {{ $column == 'title' ? 'text-green-600' : '' }} px-2">
-                                <span>Title {!! $sortLink !!}</span></th>
+                                <span>Title {!! $sortLink !!}</span>
+                            </th>
                             <th wire:click="sorting('type_name')" scope="col"
                                 class="hover:cursor-pointer  hover:text-green-600 {{ $column == 'type_name' ? 'text-green-600' : '' }} px-2 min-w-[6rem] max-w-[8rem]">
                                 <span>Type <span class="text-xs">{{ '(' . $differentTypes . ')' }}</span>
-                                {!! $sortLink !!}</span></th>
+                                    {!! $sortLink !!}</span>
+                            </th>
                             <th wire:click="sorting('category_name')" scope="col"
                                 class="hover:cursor-pointer  hover:text-green-600 {{ $column == 'category_name' ? 'text-green-600' : '' }} px-2 min-w-[8rem] max-w-[10rem]">
                                 <span>Category <span class="text-xs">{{ '(' . $differentCategories . ')' }}</span>
-                                {!! $sortLink !!}</span></th>
+                                    {!! $sortLink !!}</span>
+                            </th>
                             <th wire:click="sorting('created')" scope="col"
                                 class="hover:cursor-pointer hover:text-green-600 {{ $column == 'created' ? 'text-green-600' : '' }} px-2">
-                                <span>created {!! $sortLink !!}</span></th>
+                                <span>created {!! $sortLink !!}</span>
+                            </th>
                             <th scope="col" class="capitalize px-2">Tags</th>
                             <th scope="col" class="capitalize text-center">Files</th>
                             <th scope="col" class="capitalize text-center">actions</th>
@@ -348,7 +356,8 @@
                                         class="text-green-600 outline-none focus:ring-0 checked:bg-green-500"
                                         value={{ $entry->id }}></td>
                                 <td class="px-2">{{ $entry->id }}</td>
-                                <td class="cursor-pointer min-w-[10rem] max-w-[12rem] whitespace-normal leading-relaxed px-2" title="{{ $entry->title }}">
+                                <td class="cursor-pointer min-w-[10rem] max-w-[12rem] whitespace-normal leading-relaxed px-2"
+                                    title="{{ $entry->title }}">
                                     <a href="{{ route('codeentry.show', $entry) }}">
                                         {{ excerpt($entry->title, 40) }}
                                         {{-- {{ $entry->title }} --}}
@@ -378,6 +387,14 @@
                                                 <i class="fa-lg fa-solid fa-circle-info"></i>
                                                 <span class="tooltiptext">Open Entry</span>
                                             </span>
+                                        </a>
+                                        <!-- PDF -->
+                                        <a href="{{ route('pdf.generate', $entry) }}" title="Download as PDF">
+                                            <span
+                                                class="text-orange-600 hover:text-black transition-all duration-500 tooltip">
+                                                <i class="fa-lg fa-solid fa-file-pdf"></i>
+                                                <span class="tooltiptext">Download as PDF</span>
+                                            </span>                                            
                                         </a>
                                         <!-- Upload File -->
                                         <a href="{{ route('codefile.index', $entry) }}">
