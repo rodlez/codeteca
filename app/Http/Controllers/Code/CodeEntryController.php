@@ -123,8 +123,10 @@ class CodeEntryController extends Controller
      */
     public function exportAll() 
     {        
-        $data = [];
-        return Excel::download(new CodeExport($data, $this->codeService), 'entries.xlsx');
+        $totalEntries = $this->codeService->totalEntries();
+        $excelFileName = 'AllEntries('. $totalEntries .').xlsx';
+
+        return Excel::download(new CodeExport(true, [], $this->codeService), $excelFileName);
     }
 
      /**
@@ -139,11 +141,24 @@ class CodeEntryController extends Controller
         // listEntries is a string, remove [ ] from start and end of the string
         $stringListEntries = substr($request->listEntries, 1, -1);
 
-        // convert to array of Ids
+        // convert string to array of Ids
         $listIds = explode(',',$stringListEntries);
-                
+        $excelFileName = 'SelectionEntries('. count($listIds) .').xlsx';                
+        
+        return Excel::download(new CodeExport(false, $listIds, $this->codeService),  $excelFileName);
+    }
+
+    /**
+     * Export the collection as excel file
+     */
+    public function exportBulk(Request $request) 
+    {                
+        // convert string to array of Ids
+        $listIds = explode(',',$request->listEntriesBulk);        
+        $excelFileName = 'BulkEntries('. count($listIds) .').xlsx';
+
         //dd($listIds);
-        return Excel::download(new CodeExport($listIds, $this->codeService), 'entries.xlsx');
+        return Excel::download(new CodeExport(false, $listIds, $this->codeService), $excelFileName);
     }
 
 }

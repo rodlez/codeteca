@@ -48,7 +48,11 @@ class Main extends Component
     public $selectedTags = [];
 
     // multiple batch selections
-    public $selections = [];
+    public $selections = [];   
+
+    // select all
+    public $selectAll = false;
+
 
     public function boot(
         CodeService $codeService,
@@ -58,6 +62,7 @@ class Main extends Component
 
     public function updated()
     {
+        
         $this->resetPage();
     }
 
@@ -70,19 +75,18 @@ class Main extends Component
         $this->initialDateFrom = CodeEntry::min('created_at');
         $this->dateTo = CodeEntry::max('created_at');
         $this->initialDateTo = CodeEntry::max('created_at'); */
-    }
-
-    /*
-    TODO: Make selectAll with search and filters
+    }    
+    
+    // prefix updated method to access the value of the variable wired
     public function updatedSelectAll($value)
-    {
+    {        
         if ($value) {
-            $this->selections = Code::pluck('id')->toArray();
+            $this->selections = CodeEntry::pluck('id')->toArray();
         } else {
             $this->selections = [];
         }
-    } */
-
+    }  
+   
     public function activateFilter()
     {
         $this->showFilters++;
@@ -130,6 +134,7 @@ class Main extends Component
     public function bulkClear()
     {
         $this->selections = [];
+        $this->selectAll = false;
     }
 
 

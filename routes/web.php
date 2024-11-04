@@ -38,6 +38,7 @@ Route::get('/dashboard/entry/create', [CodeEntryController::class, 'create'])->n
 // test excel export
 Route::get('/dashboard/entry/export', [CodeEntryController::class, 'exportAll'])->name('codeexport.index')->middleware(['auth', 'verified']);
 Route::post('/dashboard/entry/export', [CodeEntryController::class, 'exportSelected'])->name('codeexporting.index')->middleware(['auth', 'verified']);
+Route::post('/dashboard/entry/exportbulk', [CodeEntryController::class, 'exportBulk'])->name('codeexportbulk.index')->middleware(['auth', 'verified']);
 
 
 Route::get('/dashboard/entry/{entry}', [CodeEntryController::class, 'show'])->name('codeentry.show')->middleware(['auth', 'verified']);

@@ -14,8 +14,7 @@
     </div>
     <!-- Filters Text-->
     <div class="flex flex-row justify-between items-center py-2 mx-4 mt-2 border-green-600 border-b-2 w-100 sm:w-100">
-        <div>
-            <i class="fa-lg fa-solid fa-filter text-green-600 pl-4"></i>
+        <div>            
             <span class="px-2 text-lg text-zinc-800">Filters</span>
         </div>
         <!-- Open/Close Buttons -->
@@ -195,22 +194,23 @@
             $tipo > 0 ||
             $cat > 0 ||
             (!in_array('0', $this->selectedTags) && count($this->selectedTags) != 0))
-        <div class="mx-4 pb-1 px-2 border-b-2 border-b-green-600">
-            <span class="text-sm text-black font-bold">Search Criteria</span>
-            <a wire:click.prevent="resetAll" title="Clear All">
-                <i class="fa-solid fa-xmark text-red-600 hover:text-red-400 cursor-pointer px-2"></i>
-            </a>
+        <div class="flex flex-row justify-between mx-4 pb-1 border-b-2 border-b-green-600">
+            <span class="text-lg text-zinc-800 px-2">Criteria</span>
+                <a wire:click.prevent="resetAll" title="Clear All">
+                    <i class="fa-solid fa-square-xmark text-red-600 hover:text-black cursor-pointer"></i>
+                </a>
+            </span>    
         </div>
 
-        <div class="flex flex-row justify-between items-center py-1 mx-4 ">
+        <div class="flex flex-row justify-between items-center py-2 my-2 mx-4 rounded-md bg-gray-200">
             <div class="flex flex-wrap text-xs text-white capitalize w-full p-2 gap-3 sm:gap-4">
                 <!-- Search -->
                 @if ($search != '')
                     <div class="flex relative">
-                        <span class="bg-green-600 p-2 rounded-lg">{{ $search != '' ? 'Search' : '' }}</span>
+                        <span class="bg-green-600 opacity-75 p-2 rounded-lg">{{ $search != '' ? 'Search' : '' }}</span>
                         <a wire:click.prevent="clearSearch" title="Clear" class="cursor-pointer">
-                            <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
-                                    class="fa-solid fa-circle-xmark"></i></span>
+                            <span class="text-red-600 hover:text-black px-2 absolute -top-2 -right-4"><i
+                                    class="fa-lg fa-solid fa-circle-xmark"></i></span>
                         </a>
                     </div>
                     <!-- Date -->
@@ -220,7 +220,7 @@
                         <span
                             class="bg-violet-400 p-2 rounded-lg">{{ $initialDateTo != $dateTo || $initialDateFrom != $dateFrom ? 'Dates (' . date('d-m-Y', strtotime($dateFrom)) . ' to ' . date('d-m-Y', strtotime($dateTo)) . ')' : '' }}</span>
                         <a wire:click.prevent="clearFilterDate" title="Clear" class="cursor-pointer">
-                            <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                            <span class="text-red-600 hover:text-black px-2 absolute -top-2 -right-4"><i
                                     class="fa-lg fa-solid fa-circle-xmark"></i></span>
                         </a>
                     </div>
@@ -229,9 +229,9 @@
                 @if ($tipo > 0)
                     <div class="flex relative">
                         <span
-                            class="bg-yellow-600 p-2 rounded-lg">{{ $tipo > 0 ? 'Type (' . $tipo . ')' : '' }}</span>
+                            class="bg-yellow-600 opacity-75 p-2 rounded-lg">{{ $tipo > 0 ? 'Type (' . $tipo . ')' : '' }}</span>
                         <a wire:click.prevent="clearFilterTipo" title="Clear" class="cursor-pointer">
-                            <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                            <span class="text-red-600 hover:text-black px-2 absolute -top-2 -right-4"><i
                                     class="fa-lg fa-solid fa-circle-xmark"></i></span>
                         </a>
                     </div>
@@ -240,9 +240,9 @@
                 @if ($cat > 0)
                     <div class="flex relative">
                         <span
-                            class="bg-blue-600 p-2 rounded-lg">{{ $cat > 0 ? 'Category (' . $cat . ')' : '' }}</span>
+                            class="bg-blue-600 opacity-75 p-2 rounded-lg">{{ $cat > 0 ? 'Category (' . $cat . ')' : '' }}</span>
                         <a wire:click.prevent="clearFilterCat" title="Clear" class="cursor-pointer">
-                            <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                            <span class="text-red-600 hover:text-black px-2 absolute -top-2 -right-4"><i
                                     class="fa-lg fa-solid fa-circle-xmark"></i></span>
                         </a>
                     </div>
@@ -251,9 +251,9 @@
                 @if (!in_array('0', $this->selectedTags) && count($this->selectedTags) != 0)
                     <div class="flex relative">
                         <span
-                            class="bg-orange-600 p-2 rounded-lg">{{ !in_array('0', $this->selectedTags) && count($this->selectedTags) != 0 ? 'Tags (' . implode(', ', $tagNames) . ')' : '' }}</span>
+                            class="bg-orange-600 opacity-75 p-2 rounded-lg">{{ !in_array('0', $this->selectedTags) && count($this->selectedTags) != 0 ? 'Tags (' . implode(', ', $tagNames) . ')' : '' }}</span>
                         <a wire:click.prevent="clearFilterTag" title="Clear" class="cursor-pointer">
-                            <span class="text-red-600 hover:text-red-400 px-2 absolute -top-2 -right-4"><i
+                            <span class="text-red-600 hover:text-black px-2 absolute -top-2 -right-4"><i
                                     class="fa-lg fa-solid fa-circle-xmark"></i></span>
                         </a>
                     </div>
@@ -266,60 +266,91 @@
     <!-- Bulk Actions -->
     @if (count($selections) > 0)
         <div
-            class="flex flex-row justify-start items-end sm:flex-row sm:justify-start gap-3 py-2 px-2 border-b-2 border-b-green-600 mx-4">
-            <span class="text-sm font-semibold">Entries Selected</span>
-            <a wire:click.prevent="bulkClear" class="cursor-pointer tooltip">
-                <span><i class="fa-solid fa-arrow-rotate-left text-green-600"></i></span>
-                <span class="tooltiptext">Unselect All</span>
-            </a>
-            <a wire:click.prevent="bulkDelete" wire:confirm="Are you sure you want to delete this entries?"
-                class="cursor-pointer text-red-600" title="Delete">
-                <span><i class="fa-solid fa-trash"></i></span>
-                <span class="px-0">({{ count($selections) }})</span>
-            </a>
+            class="flex flex-row justify-start items-center mx-4 pt-2 pb-1 border-b-2 border-b-green-600">
+            
+            <div class="flex flex-row items-center gap-1">
+                <span class="text-lg text-zinc-800 pl-2">Selected</span><span class="text-sm">({{ count($selections) }})</span>                
+            </div>
+            
+            <div class="flex flex-row justify-between items-start w-full">                
+            
+                <div class="flex flex-row px-4 gap-2">
+
+                    <a wire:click.prevent="bulkDelete" wire:confirm="Are you sure you want to delete this entries?"
+                    class="cursor-pointer text-red-600" title="Delete">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+
+                <form action="{{ route('codeexportbulk.index') }}" method="POST">
+                    <!-- Add Token to prevent Cross-Site Request Forgery (CSRF) -->
+                    @csrf
+                    <input type="hidden" id="listEntriesBulk" name="listEntriesBulk"
+                        value="{{ implode(',', $selections) }}">
+                    <button class="cursor-pointer text-blue-600" title="Export as Excel">
+                        <i class="fa-solid fa-file-export"></i>                        
+                    </button>
+                </form>
+
+                </div>
+
+                <div class="flex flex-row justify-end">
+                    <a wire:click.prevent="bulkClear" class="cursor-pointer" title="Unselect">
+                        <i class="fa-solid fa-square-xmark text-red-600 hover:text-black cursor-pointer"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
         </div>
     @endif
+
+    {{-- Bulk Entries {{ var_dump($selections) }} --}}
 
     <!-- Export -->
     <div class="flex flex-row justify-end items-end sm:flex-row sm:justify-end gap-2 pt-2 px-0 mx-4">
 
-        <span class="text-xs text-green-600 pr-2">Export to Excel </span>
+        <div class="flex flex-row gap-2 items-end">
+            <span class="text-xs text-gray-500 font-bold">Export to Excel </span>
 
-        <form action="{{ route('codeexporting.index') }}" method="POST">
-            <!-- Add Token to prevent Cross-Site Request Forgery (CSRF) -->
-            @csrf
-            <input type="hidden" id="listEntries" name="listEntries" value="{{ $entries->pluck('id') }}">
-            <button
-                class="text-black text-sm sm:text-md rounded-lg py-2 px-4 bg-gray-300 hover:bg-gray-200 transition duration-1000 ease-in-out">
-                <span class="text-xs">View
-                    <i class="fa-solid fa-file-export pl-2"></i>
-                </span>
-            </button>
-        </form>
+            @if ($entries->count() > 0)
+                <form action="{{ route('codeexporting.index') }}" method="POST">
+                    <!-- Add Token to prevent Cross-Site Request Forgery (CSRF) -->
+                    @csrf
+                    <input type="hidden" id="listEntries" name="listEntries" value="{{ $entries->pluck('id') }}">
+                    <button
+                        class="text-white text-sm sm:text-md rounded-md p-2 bg-green-600 hover:bg-green-400 transition duration-1000 ease-in-out"
+                        title="Export Current Page">
+                        <span class="text-xs">Page</span>
+                    </button>
+                </form>
+            @endif
 
-        <a href="{{ route('codeexport.index') }}"
-            class="text-white text-sm sm:text-md rounded-lg py-2 px-4 bg-black hover:bg-slate-600 transition duration-1000 ease-in-out"
-            title="Create New Entry">
-            <span class="text-xs">All
-                <i class="fa-solid fa-file-export pl-2"></i>
-            </span>
-        </a>
+            <a href="{{ route('codeexport.index') }}"
+                class="text-white text-sm sm:text-md rounded-md p-2 bg-black hover:bg-slate-600 transition duration-1000 ease-in-out"
+                title="Export All Entries">
+                <span class="text-xs px-1">All</span>
+            </a>
+        </div>
 
     </div>
 
     {{-- Entries ({{gettype($entries)}}) -> {{$entries->count()}} -> IDs ({{$entries->pluck('id')}}) --}}
 
+    {{-- Bulk Entries Selections {{ var_dump($selections) }} selectAll -> {{var_dump($selectAll)}} --}}
     <!-- Table -->
-    <div class="flex flex-col p-4">
+    <div class="flex flex-col px-4 py-1">
 
         <div class="overflow-x-auto">
 
             @if ($entries->count())
                 <table class="table-fixed min-w-full">
                     <thead class="h-12">
-                        <tr class="text-black text-left text-sm uppercase border-t-2">
-                            {{-- <th class="p-2"><input wire:model.live="selectAll" type="checkbox" class="text-orange-400 outline-none focus:ring-0 checked:bg-green-500"></th> --}}
-                            <th></th>
+                        <tr class="text-black text-left text-sm uppercase border-t-2 border-t-green-600">
+                            <th class="p-2">
+                                <input type="checkbox" wire:model.live="selectAll"
+                                    class="text-green-600 outline-none focus:ring-0 checked:bg-green-500">
+                            </th>
                             <th wire:click="sorting('id')" scope="col"
                                 class="hover:cursor-pointer hover:text-green-600 {{ $column == 'id' ? 'text-green-600' : '' }}">
                                 <span>Id {!! $sortLink !!}</span>
@@ -352,9 +383,12 @@
                         @foreach ($entries as $entry)
                             <tr
                                 class="text-sm even:bg-gray-200 odd:bg-gray-300 transition-all duration-1000 hover:bg-yellow-400">
-                                <td class="px-2"><input wire:model.live="selections" type="checkbox"
-                                        class="text-green-600 outline-none focus:ring-0 checked:bg-green-500"
-                                        value={{ $entry->id }}></td>
+                                <td class="px-2">                                    
+                                        <input wire:model.live="selections" type="checkbox" class="text-green-600 outline-none focus:ring-0 checked:bg-green-500"
+                                        value={{ $entry->id }} id={{ $entry->id }}
+                                        {{ (in_array($entry->id, $selections)) ? 'checked' : ''; }}                                     
+                                        >
+                                </td>
                                 <td class="px-2">{{ $entry->id }}</td>
                                 <td class="cursor-pointer min-w-[10rem] max-w-[12rem] whitespace-normal leading-relaxed px-2"
                                     title="{{ $entry->title }}">
@@ -394,7 +428,7 @@
                                                 class="text-orange-600 hover:text-black transition-all duration-500 tooltip">
                                                 <i class="fa-lg fa-solid fa-file-pdf"></i>
                                                 <span class="tooltiptext">Download as PDF</span>
-                                            </span>                                            
+                                            </span>
                                         </a>
                                         <!-- Upload File -->
                                         <a href="{{ route('codefile.index', $entry) }}">
