@@ -3,9 +3,9 @@
 
         <div class="overflow-hidden shadow-sm sm:rounded-lg my-4">
 
-            <div class="p-6 my-4 rounded-lg text-white bg-green-600">
+            {{-- <div class="p-6 my-4 rounded-lg text-white bg-green-600">
                 Notifications
-            </div>
+            </div> --}}
 
             <!-- MAIN MENU -->
             <div class="flex flex-col sm:flex-row sm:flex-wrap sm:justify-center sm:w-full py-10 px-4 gap-4 rounded-lg bg-white">
