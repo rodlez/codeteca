@@ -2,7 +2,7 @@
 
     <!-- Header -->
     <div class="flex flex-row justify-between items-center py-4 bg-green-600">
-            <span class="text-lg text-white px-4">New Entry</span>        
+        <span class="text-lg text-white px-4">New Entry</span>
     </div>
 
     <!-- New Entry -->
@@ -79,7 +79,7 @@
             @endif
             <!-- Tags -->
             <h2 class="text-lg font-bold pt-2 pb-1 px-2">Tags <span class="text-red-600">*</span></h2>
-                     
+
             <div class="flex flex-row">
 
                 <div class="flex items-start inset-y-0 left-0 pointer-events-none">
@@ -92,7 +92,7 @@
                             <option value="{{ $tag->id }}" @if (old('selectedTags') == $tag->id) selected @endif>
                                 {{ $tag->name }}</option>
                         @endforeach
-                    </select>                    
+                    </select>
                 </div>
 
             </div>
@@ -139,12 +139,18 @@
                 </div>
                 @php $count++ @endphp
             @endforeach
+
             <!-- Info -->
-            <h2 class="text-lg font-bold pt-2 pb-1 px-2">Info</h2>            
+            <h2 class="text-lg font-bold pt-2 pb-1 px-2">Info</h2>
             <div class="flex">
                 <span><i class="bg-zinc-200 p-3 rounded-l-md fa-solid fa-circle-info"></i></span>
                 <div class="w-full">
-                    @livewire('quilleditor.quill')
+                    <div wire:ignore>
+                        <textarea id="editor" wire:model="info" class="min-h-fit h-48" rows="6">
+                            </textarea>
+                    </div>
+                    {{-- @livewire('ckeditor.ckeditor') --}}
+                    {{-- @livewire('quilleditor.quill') --}}
                     {{-- <livewire:quilleditor.quill /> --}}
                 </div>
             </div>
@@ -155,7 +161,7 @@
                 @enderror
             </div>
             <!-- Code -->
-            <h2 class="text-lg font-bold pt-2 pb-1 px-2">Code</h2>            
+            <h2 class="text-lg font-bold pt-2 pb-1 px-2">Code</h2>
             <div class="flex">
                 <span><i class="bg-zinc-200 p-3 rounded-l-md fa-solid fa-laptop-code"></i></span>
                 <textarea rows="8" cols="20" wire:model="code" name="code" id="code" type="text"
@@ -192,21 +198,32 @@
     </div>
 
     @script()
-    <script>
-        $(document).ready(function() {
-            $('#selectedTags').select2();
+        <script>
+            $(document).ready(function() {
+                $('#selectedTags').select2();
 
-            // event
-            $('#selectedTags').on('change', function (){
-                let selected = $(this).val();
-                //console.log(selected);
-                //$wire.set('selectedTags', selected); -> equivalent to model.live, makes a request for each selection
-                //$wire.set('selectedTags', selected, false);     // only update when click, equivalent to model
-                $wire.selectedTags = selected;    // same as $wire.set('selectedTags', selected, false);
+                // event
+                $('#selectedTags').on('change', function() {
+                    let selected = $(this).val();
+                    //console.log(selected);
+                    //$wire.set('selectedTags', selected); -> equivalent to model.live, makes a request for each selection
+                    //$wire.set('selectedTags', selected, false);     // only update when click, equivalent to model
+                    $wire.selectedTags = selected; // same as $wire.set('selectedTags', selected, false);
+                });
+
             });
 
-        });
-    </script>
+            ClassicEditor
+                .create(document.querySelector('#editor'))
+                .then(editor => {
+                    editor.model.document.on('change:data', () => {
+                        @this.set('info', editor.getData());
+                    })
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
     @endscript
 
 </div>

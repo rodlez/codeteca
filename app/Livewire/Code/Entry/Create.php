@@ -56,7 +56,7 @@ class Create extends Component
  
      // TEST QUILL EDITOR
  
-     public $listeners = [
+     /* public $listeners = [
          Quill::EVENT_VALUE_UPDATED
      ];
  
@@ -77,7 +77,7 @@ class Create extends Component
         
         $this->info = $value;
  
-     }
+     } */
  
  
      // Hook Runs on every request, immediately after the component is instantiated, but before any other lifecycle methods are called

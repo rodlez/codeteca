@@ -144,7 +144,12 @@
             <div class="flex">
                 <span><i class="bg-zinc-200 p-3 rounded-l-md fa-solid fa-circle-info"></i></span>
                 <div class="w-full">
-                    @livewire('quilleditor.quill', ['value' => $info])
+                    <div wire:ignore>
+                        <textarea id="editor" wire:model="info" class="min-h-fit h-48" rows="12">
+                            {{$info}}
+                            </textarea>
+                    </div>
+                    {{-- @livewire('quilleditor.quill', ['value' => $info]) --}}
                     {{-- <livewire:quilleditor.quill /> --}}
                 </div>
             </div>
@@ -208,6 +213,17 @@
             });
 
         });
+
+        ClassicEditor
+                .create(document.querySelector('#editor'))
+                .then(editor => {
+                    editor.model.document.on('change:data', () => {
+                        @this.set('info', editor.getData());
+                    })
+                })
+                .catch(error => {
+                    console.error(error);
+                });
     </script>
     @endscript
 
